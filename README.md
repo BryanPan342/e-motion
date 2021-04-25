@@ -2,7 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/030cd7ae-d003-4ae5-9de7-f9efff40da08/deploy-status)](https://app.netlify.com/sites/eemotion/deploys)
 
-Welcome to my portfolio! I built it completely through React and Sass.
+Welcome to `e-motion`, a Creative Labs project exploring the concept of emotions through
+art, motion, and sound.
 
 ## Getting Started
 
