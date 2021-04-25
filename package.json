@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js --host=0.0.0.0",
-    "build": "node scripts/prebuild.js && webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "npx eslint \"**/*.tsx\" \"**/*.ts\"",
     "stylelint": "npx stylelint \"**/*.css\" \"**/*.scss\"",
