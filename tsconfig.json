@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "composite": true,
+    "incremental": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./custom_typing"
+    ]
+  },
+  "includes": ["**/*.ts", "**/*.tsx"]
+}

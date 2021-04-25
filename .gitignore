@@ -1,0 +1,18 @@
+# Never commit build specific folders
+node_modules/
+dist/
+**/*/content/
+
+# Never commit individual sessions
+.vscode/
+.DS_Store
+
+# Never commit temporary storage
+*.swp
+
+# Never commit logs
+*.log
+*.err
+
+# Never commit environment variables
+.env

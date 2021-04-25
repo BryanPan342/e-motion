@@ -1,0 +1,23 @@
+name: No Package-Lock :(
+on: pull_request
+
+jobs:
+  run-linters:
+    name: No Package-Lock
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Git repo
+        uses: actions/checkout@v2
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Make sure there are no package-lock.json
+        run: yarn no-lock

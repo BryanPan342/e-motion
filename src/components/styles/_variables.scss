@@ -1,0 +1,12 @@
+$colors: (
+  'black': #191919,
+  'white': #f8f8f8,
+);
+
+// Export colors to JS
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+:export {
+  @each $key, $value in $colors {
+    #{unquote($key)}: $value;
+  }
+}
