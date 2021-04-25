@@ -3,7 +3,7 @@ import React from 'react';
 function App(): JSX.Element {
 
   return (
-    <h1>Hello World</h1>
+    <h1>Hi e-motion team!</h1>
   );
 }
 
