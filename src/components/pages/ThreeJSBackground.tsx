@@ -29,6 +29,7 @@ class Figure {
     this.image = this.loader.load(this._image.src);
     this.hoverImage = this.loader.load(this._image.dataset.hover);
 
+    this._image.style.opacity = 0;
 
     this.size = new THREE.Vector2(0, 0);
     this.offset = new THREE.Vector2(0, 0);
@@ -54,6 +55,7 @@ class Figure {
   public getSizes() {
     const {width, height, top, left} = this._image.getBoundingClientRect();
     this.size.set(width, height);
+    console.log(width, height);
     this.offset.set(left - window.innerWidth / 2 + width / 2, -top + window.innerHeight / 2 - height / 2);
   }
 
@@ -139,7 +141,7 @@ function ThreeJSBackground(): JSX.Element {
       <section className={'container'}>
         <article className={'tile'}>
           <figure className={'tile-figure'}>
-            <img src={Coffee} data-hover={Coffee} className={'tile-image'} width={'400'}/>
+            <img src={Coffee} data-hover={Coffee} className={'tile-image'} width={'400'} height={'600'}/>
           </figure>
         </article>
       </section>
