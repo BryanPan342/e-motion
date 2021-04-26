@@ -1,6 +1,6 @@
+import { TweenMax as TM } from 'gsap';
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { TweenMax as TM } from 'gsap';
 
 import Coffee from '../../assets/coffee.jpg';
 
@@ -64,7 +64,7 @@ class Figure {
     });
 
     // this.mesh.rotation.set(-this.mouse.y * .3, this.mouse.x * (Math.PI / 6), 0);
-  
+
     TM.to(this.mesh.rotation, 0.5, {
       x: -this.mouse.y * .3,
       y: this.mouse.x * (Math.PI / 6),
@@ -80,50 +80,50 @@ class Scene {
   figure: Figure;
   camera: THREE.PerspectiveCamera;
   constructor() {
-      this.perspective = 800;
-      this.container = document.getElementById('stage') as HTMLCanvasElement;
+    this.perspective = 800;
+    this.container = document.getElementById('stage') as HTMLCanvasElement;
 
-      this.scene = new THREE.Scene()
-      this.renderer = new THREE.WebGLRenderer({
-          canvas: this.container,
-          alpha: true
-      })
+    this.scene = new THREE.Scene();
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.container,
+      alpha: true,
+    });
 
-      this.renderer.setSize(window.innerWidth, window.innerHeight)
-      this.renderer.setPixelRatio(window.devicePixelRatio)
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
 
-      this.initLights()
-      this.initCamera()
+    this.initLights();
+    this.initCamera();
 
-      this.figure = new Figure(this.scene)
+    this.figure = new Figure(this.scene);
 
-      this.update()
+    this.update();
   }
 
   initLights() {
-      const ambientlight = new THREE.AmbientLight(0xffffff, 2)
-      this.scene.add(ambientlight)
+    const ambientlight = new THREE.AmbientLight(0xffffff, 2);
+    this.scene.add(ambientlight);
   }
 
   initCamera() {
-      const fov =
+    const fov =
           (180 * (2 * Math.atan(window.innerHeight / 2 / this.perspective))) /
-          Math.PI
+          Math.PI;
 
-      this.camera = new THREE.PerspectiveCamera(
-          fov,
-          window.innerWidth / window.innerHeight,
-          1,
-          1000
-      )
-      this.camera.position.set(0, 0, this.perspective)
+    this.camera = new THREE.PerspectiveCamera(
+      fov,
+      window.innerWidth / window.innerHeight,
+      1,
+      1000,
+    );
+    this.camera.position.set(0, 0, this.perspective);
   }
 
   update() {
-      if (this.renderer === undefined || this.scene === undefined || this.camera === undefined) return
-      requestAnimationFrame(this.update.bind(this))
+    if (this.renderer === undefined || this.scene === undefined || this.camera === undefined) return;
+    requestAnimationFrame(this.update.bind(this));
 
-      this.renderer.render(this.scene, this.camera)
+    this.renderer.render(this.scene, this.camera);
   }
 }
 
