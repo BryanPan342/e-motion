@@ -1,9 +1,22 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+
+import Home from './pages/Home';
 
 function App(): JSX.Element {
 
   return (
-    <h1>Hi e-motion team!</h1>
+    <Router>
+      <Switch>
+        <Route path='/'>
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
