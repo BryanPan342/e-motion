@@ -24,7 +24,7 @@ void main() {
   vec4 hover = texture2D(u_hoverImage, v_uv);
 	
 	vec2 circlePos = st + mouse;
-	float c = circle(circlePos, .05, 2.5) * 2.5;
+	float c = circle(circlePos, .03, 2.5) * 2.;
 
   float offx = v_uv.x + sin(v_uv.y + u_time * .1);
   float offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;
