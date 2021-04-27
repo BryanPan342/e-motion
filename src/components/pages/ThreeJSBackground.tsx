@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import Coffee from '../../assets/coffee.jpg';
+import NightSky from '../../assets/night-sky.jpg';
 import Scene from '../shared/three/Scene';
 
 import '../styles/ThreeJSBackground.scss';
@@ -18,7 +19,7 @@ function ThreeJSBackground(): JSX.Element {
       <section className={'container'}>
         <article className={'tile'}>
           <figure className={'tile-figure'}>
-            <img src={Coffee} data-hover={Coffee} className={'tile-image'} width={'400'} height={'600'}/>
+            <img src={Coffee} data-hover={NightSky} className={'tile-image'} width={'400'} height={'600'}/>
           </figure>
         </article>
       </section>

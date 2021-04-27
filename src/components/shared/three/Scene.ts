@@ -24,9 +24,9 @@ export default class Scene {
     this.initLights();
     this.initCamera();
 
-    this.figure = new Figure(this.scene);
-
-    this.update();
+    this.figure = new Figure(this.scene, () => {
+      this.update()
+    });
   }
 
   private initLights(): void {
@@ -48,9 +48,11 @@ export default class Scene {
     this.camera.position.set(0, 0, this.perspective);
   }
 
-  private update(): void {
-    if (this.renderer === undefined || this.scene === undefined || this.camera === undefined) return;
+  public update(): void {
+    if (this.renderer === undefined) return;
     requestAnimationFrame(this.update.bind(this));
+
+    this.figure.update();
 
     this.renderer.render(this.scene, this.camera);
   }
