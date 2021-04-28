@@ -1,7 +1,7 @@
 import { TweenMax as TM } from 'gsap';
-import vertexShader from './shaders/vertexShader.glsl';
-import fragmentShader from './shaders/fragmentShader.glsl';
 import * as THREE from 'three';
+import fragmentShader from './shaders/fragmentShader.glsl';
+import vertexShader from './shaders/vertexShader.glsl';
 
 export default class Figure {
   private _image: any;
@@ -61,13 +61,13 @@ export default class Figure {
     };
 
     this.geometry = new THREE.PlaneBufferGeometry(1, 1, 1, 1);
-    this.material = new THREE.ShaderMaterial({ 
+    this.material = new THREE.ShaderMaterial({
       uniforms: this.uniforms,
       vertexShader,
       fragmentShader,
       defines: {
         PR: window.devicePixelRatio.toFixed(1),
-      }
+      },
     });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);

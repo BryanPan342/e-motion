@@ -25,7 +25,7 @@ export default class Scene {
     this.initCamera();
 
     this.figure = new Figure(this.scene, () => {
-      this.update()
+      this.update();
     });
   }
 
