@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js --host=0.0.0.0",
+    "start": "webpack-dev-server --open --config webpack.dev.js --host=127.0.0.1",
     "build": "webpack --config webpack.prod.js",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "npx eslint \"**/*.tsx\" \"**/*.ts\"",
@@ -9,6 +9,8 @@
     "no-lock": "scripts/noPackageLock.sh"
   },
   "dependencies": {
+    "@types/p5": "^0.9.1",
+    "p5": "^1.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0"
