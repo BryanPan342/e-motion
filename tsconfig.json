@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "module": "es6",
     "target": "es5",
     "jsx": "react",
@@ -20,7 +20,7 @@
     "typeRoots": [
       "./node_modules/@types",
       "./custom_typing"
-    ]
+    ],
   },
   "includes": ["**/*.ts", "**/*.tsx"]
 }

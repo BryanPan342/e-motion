@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 function P5jsBackground(): JSX.Element {
 
   return (
-        <div></div>
+    <div></div>
   );
 }
 

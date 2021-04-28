@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +14,7 @@ function App(): JSX.Element {
   return (
     <Router>
       <Switch>
-      <Route path='/pages/P5jsBackground'>
+      <Route exact path='/forrest'>
           <P5jsBackground />
         </Route>
         <Route path='/'>
