@@ -8,6 +8,7 @@ export default class Scene {
   renderer: THREE.WebGLRenderer;
   figure: Figure;
   camera: THREE.PerspectiveCamera;
+
   constructor() {
     this.perspective = 800;
     this.container = document.getElementById('stage') as HTMLCanvasElement;

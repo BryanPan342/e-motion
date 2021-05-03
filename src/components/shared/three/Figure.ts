@@ -85,8 +85,8 @@ export default class Figure {
     });
 
     TM.to(this.mesh?.rotation, 0.5, {
-      x: -this.mouse.y * .3,
-      y: this.mouse.x * (Math.PI / 6),
+      x: -this.mouse.y * .2,
+      y: this.mouse.x * (Math.PI / 8),
     });
   }
 
