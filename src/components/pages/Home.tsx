@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import '../styles/Home.scss';
 
 function Home(): JSX.Element {
-
   return (
-    <h1>Hi e-motion team!</h1>
+    <div id={'home-container'}>
+      <h1>Home Page</h1>
+      <Link to={'/story1'}>Story 1</Link>
+    </div>
   );
 }
 

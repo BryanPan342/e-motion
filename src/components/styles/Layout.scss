@@ -1,0 +1,88 @@
+@import 'variables';
+
+#layout {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#p5-background {
+ position: fixed;
+ z-index: 0;
+ top: 0;
+ left: 0; 
+}
+
+.foreground-image {
+  z-index: 2;
+  width: 100%;
+  height: auto;
+}
+
+.text-wrapper {
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: map-get($colors, 'black');
+  width: 100%;
+  height: $text-wrapper-height;
+}
+
+#overlay {
+  visibility: hidden;
+  display: flex;
+  position: fixed;
+  background-color: lightgray;
+  opacity: 30%;
+
+  z-index: 5;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+#prev, #next {
+  border: none;
+  background: none;
+  height: 100vh;
+  width: 50vw;
+  overflow: hidden;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover:after {
+    background-color: black;
+    opacity: 90%;
+  }
+}
+
+#prev:hover {
+  cursor: url('../../assets/backward.svg'), default !important;
+}
+
+
+#next:hover {
+  cursor: url('../../assets/forward.svg'), default !important;
+}
+
+@media screen and (max-height: 500px) {
+  .text-wrapper {
+    height: $text-wrapper-height-mobile;
+  }
+}
