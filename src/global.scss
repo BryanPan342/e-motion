@@ -3,8 +3,6 @@
 html {
   font-size: clamp(12px, 1.2vw, 16px);
 
-  overflow: hidden;
-
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 
@@ -15,6 +13,9 @@ html {
 }
 
 body {
+  overflow: hidden;
+  height: 100%;
+
   font: $body-reg-font;
   padding: 0;
   margin: 0;
@@ -37,5 +38,11 @@ button {
 
   &:focus {
     outline: none;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  html {
+    font-size: 12px;
   }
 }
