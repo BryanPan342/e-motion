@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+$body-reg-font:  normal 400 1.2rem 'Raleway', serif;
+
 $colors: (
   'black': #191919,
   'white': #f8f8f8,
 );
+
+$text-wrapper-height: 100px;
 
 // Export colors to JS
 /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
@@ -9,4 +15,6 @@ $colors: (
   @each $key, $value in $colors {
     #{unquote($key)}: $value;
   }
+
+  textHeight: $text-wrapper-height;
 }

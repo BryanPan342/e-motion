@@ -1,6 +1,10 @@
 @import './components/styles/variables';
 
 html {
+  font-size: clamp(12px, 1.2vw, 16px);
+
+  overflow: hidden;
+
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 
@@ -11,6 +15,27 @@ html {
 }
 
 body {
+  font: $body-reg-font;
   padding: 0;
   margin: 0;
+  background-color: map-get($colors, 'black');
+}
+
+div {
+  color: map-get($colors, 'white');
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
 }
