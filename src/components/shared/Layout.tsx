@@ -18,7 +18,7 @@ export interface LayoutProps {
   exit: () => void;
 }
 
-function Layout(props: LayoutProps) {
+function Layout(props: LayoutProps): JSX.Element {
   const {children: scenes, exit} = props;
 
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -45,7 +45,7 @@ function Layout(props: LayoutProps) {
     timeout.current && clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
       overlayRef.current && (overlayRef.current.style.visibility = 'visible');
-      if (sceneIdx > 0) { showButton(prevRef) }
+      if (sceneIdx > 0) { showButton(prevRef); }
       showButton(nextRef);
       timeout.current = null;
     }, scene?.time ?? 2000);
@@ -53,11 +53,11 @@ function Layout(props: LayoutProps) {
 
   const showButton = (ref: ButtonRef) => {
     ref.current && (ref.current.style.visibility = 'visible');
-  }
+  };
 
   const hideButton = (ref: ButtonRef) => {
     ref.current && (ref.current.style.visibility = 'hidden');
-  }
+  };
 
   const prev = () => {
     if (sceneIdx < 1) return;
@@ -68,7 +68,6 @@ function Layout(props: LayoutProps) {
     if (sceneIdx >= scenes.length) return;
     setSceneIdx(sceneIdx + 1);
   };
-
 
 
   return (

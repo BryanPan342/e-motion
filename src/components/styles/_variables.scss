@@ -16,5 +16,6 @@ $text-wrapper-height: 100px;
     #{unquote($key)}: $value;
   }
 
+  /* stylelint-disable-next-line property-no-unknown */
   textHeight: $text-wrapper-height;
 }
