@@ -7,7 +7,7 @@ import P5Scene from './P5Scene';
 
 export interface SceneProps {
   sketch: (p: p5) => void;
-  time: number;
+  duration: number;
   text: string;
   image: string;
   imageAlt?: string;
@@ -48,7 +48,7 @@ function Layout(props: LayoutProps): JSX.Element {
       if (sceneIdx > 0) { showButton(prevRef); }
       showButton(nextRef);
       timeout.current = null;
-    }, scene?.time ?? 2000);
+    }, scene?.duration ?? 2000);
   }, [scene]);
 
   const showButton = (ref: ButtonRef) => {

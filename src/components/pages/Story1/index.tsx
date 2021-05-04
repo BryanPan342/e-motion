@@ -12,19 +12,19 @@ function Story1(): JSX.Element {
       sketch: test,
       text: 'My parents didn’t know much about deafness. They were young.',
       image: Wireframe,
-      time: 2000,
+      duration: 2000,
     },
     {
       sketch: test,
       text: 'Blah blah blah more text.. jdaaksdjflaksdfjlaksd',
       image: Wireframe,
-      time: 2000,
+      duration: 2000,
     },
     {
       sketch: test,
       text: 'Bryan is so cool he is the best',
       image: Wireframe,
-      time: 2000,
+      duration: 2000,
     },
   ];
 
