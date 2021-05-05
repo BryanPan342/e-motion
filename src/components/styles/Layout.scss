@@ -44,6 +44,10 @@
 
 #svg-cta {
   overflow: visible;
+
+  // Fixes Safari Bug for parent button clipping content
+  // https://stackoverflow.com/questions/41100273/overflowing-button-text-is-being-clipped-in-safari
+  position: relative;
 }
 
 .svg-circle-inner {
