@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import React, { useEffect, useRef, useState } from 'react';
-import { animateLeft, animateOutRight, animateOutUp, animateUp, ButtonRef, fade, hideButton, showButton} from '../../utils';
+import { animateLeft, animateOutRight, animateOutUp, animateUp, hideButton, showButton} from '../../utils';
 
 import '../styles/Layout.scss';
 import P5Scene from './P5Scene';
@@ -73,13 +73,13 @@ function Layout(props: LayoutProps): JSX.Element {
       }
       <button onClick={() => next()} ref={nextRef} id={'next'}>
         <svg id={'svg-cta'} width={size} height={size}>
-          {Array(num_circles).fill(0).map((_, i) => 
+          {Array(num_circles).fill(0).map((_, i) =>
             <circle
               className={'svg-circle-bg'}
               cx={center}
               cy={center}
               r={center}
-              key={i}/>
+              key={i}/>,
           )}
           <circle
             className={'svg-circle-inner'}
