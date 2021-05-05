@@ -11,21 +11,37 @@ function Story1(): JSX.Element {
   const content: SceneProps[] = [
     {
       sketch: test,
-      text: 'My parents didn’t know much about deafness. They were young.',
+      expo: [
+        {
+          text: 'My parents didn’t know much about deafness. They were young.',
+          duration: 3000,
+        },
+        {
+          text: 'bryan is so cool he is amazing',
+          duration: 3000,
+        },
+      ],
       image: Wireframe,
-      duration: 3000,
     },
     {
       sketch: test2,
-      text: 'Blah blah blah more text.. jdaaksdjflaksdfjlaksd',
+      expo: [
+        {
+          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
+          duration: 3000,
+        },
+      ],
       image: Wireframe,
-      duration: 3000,
     },
     {
       sketch: test,
-      text: 'Bryan is so cool he is the best',
+      expo: [
+        {
+          text: 'bryan is so cool he is amazing',
+          duration: 3000,
+        },
+      ],
       image: Wireframe,
-      duration: 3000,
     },
   ];
 

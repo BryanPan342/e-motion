@@ -15,7 +15,7 @@ export function animateUp(targets: AnimeTarget, opacity?: number): void {
     targets: _targets,
     opacity: [0, opacity ?? 1],
     easing: 'easeInOutQuart',
-    duration: 1000,
+    duration: 1750,
     translateY: ['50px', '0px'],
   });
 }
@@ -26,8 +26,8 @@ export function animateLeft(targets: AnimeTarget, opacity?: number): void {
     targets: _targets,
     opacity: [0, opacity ?? 1],
     easing: 'easeInOutQuart',
-    duration: 1000,
-    translateX: ['-50px', '0px'],
+    duration: 1750,
+    translateX: ['-25px', '0px'],
   });
 }
 
@@ -49,7 +49,7 @@ export function animateOutRight(targets: AnimeTarget): void {
     opacity: 0,
     easing: 'easeInOutQuart',
     duration: 1000,
-    translateX: ['0px', '50px'],
+    translateX: ['0px', '25px'],
   });
 }
 
@@ -60,6 +60,6 @@ export function fade(targets: AnimeTarget, fadeIn: boolean): void {
     targets: _targets,
     opacity,
     easing: 'easeInOutQuart',
-    duration: 1000,
+    duration: fadeIn ? 1500 : 1000,
   });
 }

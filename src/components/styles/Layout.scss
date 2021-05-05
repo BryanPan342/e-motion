@@ -22,14 +22,23 @@
 }
 
 .text-wrapper {
+  position: relative;
   z-index: 3;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: map-get($colors, 'black');
   width: 100%;
   height: $text-wrapper-height;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    width: inherit;
+    height: inherit;
+  }
 }
 
 #next {
