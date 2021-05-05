@@ -21,10 +21,10 @@ export default function sketch(p: p5): void {
 
     const dx = p.mouseX - x;
     x += dx * easing;
-  
+
     const dy = p.mouseY - y;
     y += dy * easing;
-  
+
     p.ellipse(x, y, 66, 66);
   };
 }
