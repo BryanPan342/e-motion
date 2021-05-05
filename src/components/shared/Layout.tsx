@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import React, { useEffect, useRef, useState } from 'react';
-import { animateLeft, animateOutRight, animateOutUp, animateUp, ButtonRef} from '../../utils';
+import { animateLeft, animateOutRight, animateOutUp, animateUp, ButtonRef, fade, hideButton, showButton} from '../../utils';
 
 import '../styles/Layout.scss';
 import P5Scene from './P5Scene';
@@ -18,11 +18,13 @@ export interface LayoutProps {
   exit: () => void;
 }
 
+const num_circles = 2;
+const size = 25;
+const center = size / 2;
+
 function Layout(props: LayoutProps): JSX.Element {
   const {children: scenes, exit} = props;
 
-  const overlayRef = useRef<HTMLDivElement | null>(null);
-  const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -30,8 +32,6 @@ function Layout(props: LayoutProps): JSX.Element {
   const [scene, setScene] = useState<SceneProps | null>(null);
 
   useEffect(() => {
-    overlayRef.current && (overlayRef.current.style.visibility = 'hidden');
-    hideButton(prevRef);
     hideButton(nextRef);
 
     if (sceneIdx >= scenes.length) exit();
@@ -51,28 +51,12 @@ function Layout(props: LayoutProps): JSX.Element {
 
     timeout.current && clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
-      overlayRef.current && (overlayRef.current.style.visibility = 'visible');
-      if (sceneIdx > 0) { showButton(prevRef); }
       showButton(nextRef);
       timeout.current = null;
     }, scene?.duration ?? 2000);
   }, [scene]);
 
-  const showButton = (ref: ButtonRef) => {
-    ref.current && (ref.current.style.visibility = 'visible');
-  };
-
-  const hideButton = (ref: ButtonRef) => {
-    ref.current && (ref.current.style.visibility = 'hidden');
-  };
-
-  const prev = () => {
-    if (sceneIdx < 1) return;
-    setSceneIdx(sceneIdx - 1);
-  };
-
   const next = () => {
-    if (sceneIdx >= scenes.length) return;
     setSceneIdx(sceneIdx + 1);
   };
 
@@ -87,10 +71,23 @@ function Layout(props: LayoutProps): JSX.Element {
           </div>
         </>
       }
-      <div ref={overlayRef} id={'overlay'} >
-        <button onClick={() => prev()} ref={prevRef} id={'prev'}/>
-        <button onClick={() => next()} ref={nextRef} id={'next'}/>
-      </div>
+      <button onClick={() => next()} ref={nextRef} id={'next'}>
+        <svg id={'svg-cta'} width={size} height={size}>
+          {Array(num_circles).fill(0).map((_, i) => 
+            <circle
+              className={'svg-circle-bg'}
+              cx={center}
+              cy={center}
+              r={center}
+              key={i}/>
+          )}
+          <circle
+            className={'svg-circle-inner'}
+            cx={center}
+            cy={center}
+            r={center}/>
+        </svg>
+      </button>
     </div>
   );
 }

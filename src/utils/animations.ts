@@ -15,7 +15,7 @@ export function animateUp(targets: AnimeTarget, opacity?: number): void {
     targets: _targets,
     opacity: [0, opacity ?? 1],
     easing: 'easeInOutQuart',
-    duration: 750,
+    duration: 1000,
     translateY: ['50px', '0px'],
   });
 }
@@ -26,7 +26,7 @@ export function animateLeft(targets: AnimeTarget, opacity?: number): void {
     targets: _targets,
     opacity: [0, opacity ?? 1],
     easing: 'easeInOutQuart',
-    duration: 750,
+    duration: 1000,
     translateX: ['-50px', '0px'],
   });
 }
@@ -37,7 +37,7 @@ export function animateOutUp(targets: AnimeTarget): void {
     targets: _targets,
     opacity: 0,
     easing: 'easeInOutQuart',
-    duration: 500,
+    duration: 1000,
     translateY: ['0px', '-25px'],
   });
 }
@@ -48,7 +48,18 @@ export function animateOutRight(targets: AnimeTarget): void {
     targets: _targets,
     opacity: 0,
     easing: 'easeInOutQuart',
-    duration: 500,
+    duration: 1000,
     translateX: ['0px', '50px'],
+  });
+}
+
+export function fade(targets: AnimeTarget, fadeIn: boolean): void {
+  const _targets = extractTargets(targets);
+  const opacity = fadeIn ? [0, 1] : [1, 0];
+  anime({
+    targets: _targets,
+    opacity,
+    easing: 'easeInOutQuart',
+    duration: 1000,
   });
 }
