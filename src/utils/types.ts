@@ -9,3 +9,5 @@ export type UseP5 = [
 ];
 
 export type ButtonRef = React.MutableRefObject<HTMLButtonElement | null>;
+
+export type AnimeTarget = string | DOMTokenList;

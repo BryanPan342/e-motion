@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import React, { useEffect, useRef, useState } from 'react';
-import { ButtonRef} from '../../utils';
+import { animateLeft, animateOutRight, animateOutUp, animateUp, ButtonRef} from '../../utils';
 
 import '../styles/Layout.scss';
 import P5Scene from './P5Scene';
@@ -30,18 +30,25 @@ function Layout(props: LayoutProps): JSX.Element {
   const [scene, setScene] = useState<SceneProps | null>(null);
 
   useEffect(() => {
-    // animation to fade out current scene
     overlayRef.current && (overlayRef.current.style.visibility = 'hidden');
     hideButton(prevRef);
     hideButton(nextRef);
 
     if (sceneIdx >= scenes.length) exit();
-    setScene(scenes[sceneIdx]);
+
+    animateOutRight('.foreground-image');
+    animateOutUp('.text-wrapper p');
+
+    setTimeout(() => {
+      setScene(scenes[sceneIdx]);
+    }, 1000);
 
   }, [sceneIdx]);
 
   useEffect(() => {
-    // animation to fade in scene
+    animateLeft('.foreground-image');
+    animateUp('.text-wrapper p');
+
     timeout.current && clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
       overlayRef.current && (overlayRef.current.style.visibility = 'visible');
@@ -68,7 +75,6 @@ function Layout(props: LayoutProps): JSX.Element {
     if (sceneIdx >= scenes.length) return;
     setSceneIdx(sceneIdx + 1);
   };
-
 
   return (
     <div id={'layout'}>
