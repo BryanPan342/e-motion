@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import test from '../../sketches/test';
+import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
   const history = useHistory();
@@ -10,21 +11,37 @@ function Story1(): JSX.Element {
   const content: SceneProps[] = [
     {
       sketch: test,
-      text: 'My parents didn’t know much about deafness. They were young.',
+      expo: [
+        {
+          text: 'My parents didn’t know much about deafness. They were young.',
+          duration: 3000,
+        },
+        {
+          text: 'bryan is so cool he is amazing',
+          duration: 3000,
+        },
+      ],
       image: Wireframe,
-      duration: 2000,
+    },
+    {
+      sketch: test2,
+      expo: [
+        {
+          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
+          duration: 3000,
+        },
+      ],
+      image: Wireframe,
     },
     {
       sketch: test,
-      text: 'Blah blah blah more text.. jdaaksdjflaksdfjlaksd',
+      expo: [
+        {
+          text: 'bryan is so cool he is amazing',
+          duration: 3000,
+        },
+      ],
       image: Wireframe,
-      duration: 2000,
-    },
-    {
-      sketch: test,
-      text: 'Bryan is so cool he is the best',
-      image: Wireframe,
-      duration: 2000,
     },
   ];
 

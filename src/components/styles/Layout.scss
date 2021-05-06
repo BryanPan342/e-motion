@@ -22,67 +22,85 @@
 }
 
 .text-wrapper {
+  position: relative;
   z-index: 3;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: map-get($colors, 'black');
   width: 100%;
   height: $text-wrapper-height;
-}
 
-#overlay {
-  visibility: hidden;
-  display: flex;
-  position: fixed;
-  background-color: lightgray;
-  opacity: 30%;
-
-  z-index: 5;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-}
-
-#prev, #next {
-  border: none;
-  background: none;
-  height: 100vh;
-  width: 50vw;
-  overflow: hidden;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:after {
-    content: "";
-    display: block;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
     top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-  }
-
-  &:hover:after {
-    background-color: black;
-    opacity: 90%;
+    width: inherit;
+    height: inherit;
   }
 }
 
-#prev:hover {
-  cursor: url('../../assets/backward.svg'), default !important;
+#next {
+  visibility: hidden;
+  position: fixed;
+  bottom: 37.5px;
+  right: 37.5px;
+  z-index: 10;
+
+  cursor: pointer;
 }
 
+#svg-cta {
+  overflow: visible;
 
-#next:hover {
-  cursor: url('../../assets/forward.svg'), default !important;
+  // Fixes Safari Bug for parent button clipping content
+  // https://stackoverflow.com/questions/41100273/overflowing-button-text-is-being-clipped-in-safari
+  position: relative;
+}
+
+.svg-circle-inner {
+  fill: #fafafa;
+  transform: scale(0.75);
+  transform-origin: center center;
+}
+
+.svg-circle-bg {
+  fill: #f8f8f8;
+  transform: scale(0.5);
+  transform-origin: center center;
+  animation: pulse 3s linear infinite;
+
+  &:nth-child(2) {
+    animation-delay: 2s;
+  }
+
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  70% {
+    opacity: 0.09;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 @media screen and (max-height: 500px) {
   .text-wrapper {
     height: $text-wrapper-height-mobile;
   }
+
+  #next {
+    bottom: 12.5px;
+    right: 12.5px;
+  }  
 }

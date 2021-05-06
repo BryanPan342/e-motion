@@ -25,6 +25,6 @@ export default function sketch(p: p5): void {
     const dy = p.mouseY - y;
     y += dy * easing;
 
-    p.ellipse(x, y, 66, 66);
+    p.square(x, y, 66);
   };
 }
