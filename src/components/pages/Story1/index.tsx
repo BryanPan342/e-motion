@@ -15,24 +15,12 @@ function Story1(): JSX.Element {
       sketch: test4,
       expo: [
         {
-          text: 'ivan why so lonely go play ball ',
+          text: 'george why so lonely go play ball ',
           duration: 3000,
         },
         {
           text: 'so slow no wonder u in online school',
           duration: 2000,
-        },
-        {
-          text: 'yo check the stove ',
-          duration: 3000,
-        },
-        {
-          text: 'i think your fried rice is burning ',
-          duration: 3000,
-        },
-        {
-          text: 'pls dont tell me u use colander',
-          duration: 3000,
         },
       ],
       image: Wireframe,
