@@ -1,12 +1,11 @@
 import p5 from 'p5';
-
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
   let xo = 1;
   let yo = 1;
   const easing = 0.1;
-  let points:p5.Vector[] = [];
-  let mult = 0.005;
+  const points:p5.Vector[] = [];
+  const mult = 0.005;
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
@@ -19,11 +18,11 @@ export default function sketch(p: p5): void {
     const space = window.innerWidth / density;  // distance between each point
 
     for (let x = 0; x < window.innerWidth; x += space) {
-			for (let y = 0; y < window.innerHeight; y += space) {
-				const pp = p.createVector(x + p.random(-10, 10), y + p.random(-10, 10));
-				points.push(pp);
-			}
-		}
+      for (let y = 0; y < window.innerHeight; y += space) {
+        const pp = p.createVector(x + p.random(-10, 10), y + p.random(-10, 10));
+        points.push(pp);
+      }
+    }
 
   };
 
@@ -44,7 +43,6 @@ export default function sketch(p: p5): void {
       p.fill(r,g,b);
 
       const angle = p.map(p.noise(points[i].x * mult,points[i].y * mult) , 0 , 1 , 0 , 720);
-      
 
       points[i].add(p.createVector(p.cos(angle),p.sin(angle)));
       p.ellipse(points[i].x, points[i].y, 6);
