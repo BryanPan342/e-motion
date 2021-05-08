@@ -58,14 +58,17 @@ function Layout(props: LayoutProps): JSX.Element {
   useEffect(() => {
     if (expoIdx >= scene.expo.length) return;
 
-    animateUp(`.text-wrapper #expo-${expoIdx}`);
-    timeout.current && clearTimeout(timeout.current);
-    timeout.current = setTimeout(() => {
-      if (expoIdx === scene.expo.length - 1) showButton(nextRef);
-      animateOutUp(`.text-wrapper #expo-${expoIdx}`);
-      setExpoIdx(expoIdx + 1);
-      timeout.current = null;
-    }, (scene.expo[expoIdx].duration ?? 2000));
+    setTimeout( () => {
+      animateUp(`.text-wrapper #expo-${expoIdx}`);
+      timeout.current && clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
+        if (expoIdx === scene.expo.length - 1) showButton(nextRef);
+        animateOutUp(`.text-wrapper #expo-${expoIdx}`);
+        setExpoIdx(expoIdx + 1);
+        timeout.current = null;
+      }, (scene.expo[expoIdx].duration ?? 2000));
+    }, 2000);
+
   }, [expoIdx]);
 
   const next = () => {
