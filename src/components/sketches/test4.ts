@@ -22,8 +22,9 @@ export default function sketch(p: p5): void {
 
   p.draw = () => {
     p.background(20);
+    p.fill(255, 255, 255, 255);
+
     p.circle(p.mouseX, p.mouseY, 25);
-    p.fill(255, 255, 255, 1);
 
     particles.forEach((particle, idx) => {
       particle.update();
@@ -62,12 +63,9 @@ export default function sketch(p: p5): void {
       const mouse = p.createVector(p.mouseX, p.mouseY);
       const diff = p5.Vector.sub(cir, mouse); // vector from point to mouse
       diff.normalize(); // make this a unit vector
-      //cir = cir+diff*pct*50;
       cir = p5.Vector.add(cir, p5.Vector.mult(diff, pct * 50));
-      //circle(cir.x,cir.y, 5+8*pct);
 
       p.circle(cir.x, cir.y, this.size * 2);
-      //circle(this.pos.x, this.pos.y, this.size * 2);
     }
 
     draw() {
@@ -91,8 +89,13 @@ export default function sketch(p: p5): void {
       }
     }
     checkParticles() {
-      particles.forEach((particle:Particle) => {
-        const d = p.dist(this.pos.x, this.pos.y, particle.pos.x, particle.pos.y);
+      particles.forEach((particle: Particle) => {
+        const d = p.dist(
+          this.pos.x,
+          this.pos.y,
+          particle.pos.x,
+          particle.pos.y,
+        );
         const di = p.dist(p.mouseX, p.mouseY, this.pos.x, this.pos.y);
         const di2 = p.dist(p.mouseX, p.mouseY, particle.pos.x, particle.pos.y);
 
