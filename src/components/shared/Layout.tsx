@@ -50,7 +50,9 @@ function Layout(props: LayoutProps): JSX.Element {
   }, [sceneIdx]);
 
   useEffect(() => {
-    animateLeft('.foreground-image');
+    setTimeout( () => {
+      animateLeft('.foreground-image');
+    }, 3000);
   }, [scene]);
 
   useEffect(() => {
