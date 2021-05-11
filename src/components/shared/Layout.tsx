@@ -52,7 +52,7 @@ function Layout(props: LayoutProps): JSX.Element {
   useEffect(() => {
     setTimeout( () => {
       animateLeft('.foreground-image');
-    }, 3000);
+    }, 5000);
   }, [scene]);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function Layout(props: LayoutProps): JSX.Element {
         setExpoIdx(expoIdx + 1);
         timeout.current = null;
       }, (scene.expo[expoIdx].duration ?? 2000));
-    }, 2000);
+    }, 4000);
   }, [expoIdx]);
 
   const next = () => {
