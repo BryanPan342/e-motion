@@ -37,7 +37,7 @@ export default function sketch(p: p5): void {
     });
   };
   class Particle {
-    pos!: p5.Vector;
+    pos: p5.Vector;
     vel: p5.Vector;
     size: number;
     constructor() {
