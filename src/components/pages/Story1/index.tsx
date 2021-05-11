@@ -75,16 +75,6 @@ function Story1(): JSX.Element {
       ],
       image: Wireframe,
     },
-    {
-      sketch: test,
-      expo: [
-        {
-          text: 'bryan is so cool he is amazing',
-          duration: 3000,
-        },
-      ],
-      image: Wireframe,
-    },
   ];
 
   const exit = () => {
