@@ -1,18 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import Wireframe2 from '../../../assets/neutral_wireframe.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
+import s1s1_neutral from '../../sketches/s1s1_neutral';
 import test from '../../sketches/test';
 import test2 from '../../sketches/test2';
 import test3 from '../../sketches/test3';
-import test4 from '../../sketches/test4';
 
 function Story1(): JSX.Element {
   const history = useHistory();
 
   const content: SceneProps[] = [
     {
-      sketch: test4,
+      sketch: s1s1_neutral,
       expo: [
         {
           text: 'george why so lonely go play ball ',
@@ -23,7 +24,7 @@ function Story1(): JSX.Element {
           duration: 2000,
         },
       ],
-      image: Wireframe,
+      image: Wireframe2,
     },
     {
       sketch: test3,
