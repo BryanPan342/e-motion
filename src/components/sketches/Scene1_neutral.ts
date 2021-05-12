@@ -96,6 +96,8 @@ export default function sketch(p: p5): void {
           particle.pos.x,
           particle.pos.y,
         );
+        if (d > lineLength) return;
+
         const di2 = p.dist(p.mouseX, p.mouseY, particle.pos.x, particle.pos.y);
 
         if (d < lineLength && di > repelRadius && di2 > repelRadius) {

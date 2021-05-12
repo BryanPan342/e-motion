@@ -1,9 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import Scene1 from '../../../assets/neutral_wireframe.png';
+import Scene1_fg from '../../../assets/scene1_neutral.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
-import s1s1_neutral from '../../sketches/s1s1_neutral';
+import Scene1_bg from '../../sketches/Scene1_neutral';
 import test from '../../sketches/test';
 import test2 from '../../sketches/test2';
 import test3 from '../../sketches/test3';
@@ -13,7 +13,7 @@ function Story1(): JSX.Element {
 
   const content: SceneProps[] = [
     {
-      sketch: s1s1_neutral,
+      sketch: Scene1_bg,
       expo: [
         {
           text: 'george why so lonely go play ball ',
@@ -24,7 +24,7 @@ function Story1(): JSX.Element {
           duration: 2000,
         },
       ],
-      image: Scene1,
+      image: Scene1_fg,
     },
     {
       sketch: test3,
