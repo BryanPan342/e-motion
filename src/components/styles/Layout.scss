@@ -28,12 +28,13 @@
   text-align: center;
   background-color: map-get($colors, 'black');
   width: 100%;
-  height: $text-wrapper-height;
+  min-height: $text-wrapper-height;
 
   div {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     position: absolute;
     opacity: 0;
     top: 0;
