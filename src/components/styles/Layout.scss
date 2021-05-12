@@ -23,12 +23,12 @@
 }
 
 .text-wrapper {
-  position: relative;
+  position: absolute;
   z-index: 3;
   text-align: center;
   background-color: map-get($colors, 'black');
   width: 100%;
-  min-height: $text-wrapper-height;
+  height: $text-wrapper-height;
 
   div {
     display: flex;
