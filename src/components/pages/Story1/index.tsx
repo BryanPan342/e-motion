@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import Wireframe2 from '../../../assets/neutral_wireframe.png';
+import Scene1 from '../../../assets/neutral_wireframe.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import s1s1_neutral from '../../sketches/s1s1_neutral';
@@ -24,7 +24,7 @@ function Story1(): JSX.Element {
           duration: 2000,
         },
       ],
-      image: Wireframe2,
+      image: Scene1,
     },
     {
       sketch: test3,

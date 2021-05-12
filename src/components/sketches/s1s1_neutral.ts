@@ -4,20 +4,20 @@ export default function sketch(p: p5): void {
 
   const particles: Particle[] = [];
   const lineLength = 120;
-  const repelRadius = window.innerWidth*0.2;
+  const repelRadius = window.innerWidth*0.15;
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
     canvas.id('p5-background');
 
-    const numParticles = Math.min(Math.floor(window.innerWidth / 10), 200);
+    const numParticles = Math.min(Math.floor(window.innerWidth / 10), 400);
     for (let i = 0; i < numParticles; i++) {
       particles.push(new Particle());
     }
   };
 
   p.windowResized = () => {
-    p.resizeCanvas(window.innerWidth, window.innerHeight, false);
+    p.resizeCanvas(window.innerWidth, window.innerHeight, true);
   };
 
   p.draw = () => {
@@ -29,9 +29,9 @@ export default function sketch(p: p5): void {
     particles.forEach((particle, idx) => {
       particle.update();
       if (idx % 2 == 0) {
-        particle.draw();
+        particle.draw(true);
       } else {
-        particle.draw2();
+        particle.draw(false);
       }
       particle.checkParticles();
     });
@@ -41,7 +41,10 @@ export default function sketch(p: p5): void {
     vel: p5.Vector;
     size: number;
     constructor() {
-      this.pos = p.createVector(p.random(window.innerWidth), p.random(window.innerHeight));
+      this.pos = p.createVector(
+        p.random(window.innerWidth),
+        p.random(window.innerHeight),
+      );
       this.vel = p.createVector(p.random(-1, 1), p.random(-1, 1));
       this.size = 5;
     }
@@ -67,15 +70,9 @@ export default function sketch(p: p5): void {
 
       p.circle(cir.x, cir.y, this.size * 2);
     }
-
-    draw() {
+    draw(moreOpaque: boolean) {
       p.noStroke();
-      p.fill('rgba(255, 255, 255, 0.5)');
-      this.repel();
-    }
-    draw2() {
-      p.noStroke();
-      p.fill('rgba(255, 255, 255, 0.25)');
+      p.fill(`rgba(255, 255, 255, ${moreOpaque ? 0.25 : 0.5})`);
       this.repel();
     }
 
@@ -90,6 +87,7 @@ export default function sketch(p: p5): void {
     }
     checkParticles() {
       const di = p.dist(p.mouseX, p.mouseY, this.pos.x, this.pos.y);
+      if (di <= repelRadius) return;
 
       particles.forEach((particle: Particle) => {
         const d = p.dist(
