@@ -66,7 +66,7 @@ function Layout(props: LayoutProps): JSX.Element {
         setExpoIdx(expoIdx + 1);
         timeout.current = null;
       }, (scene.expo[expoIdx].duration ?? 2000));
-    }, 4000);
+    }, 6000);
   }, [expoIdx]);
 
   const next = () => {
