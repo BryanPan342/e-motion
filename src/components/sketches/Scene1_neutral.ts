@@ -28,11 +28,7 @@ export default function sketch(p: p5): void {
 
     particles.forEach((particle, idx) => {
       particle.update();
-      if (idx % 2 == 0) {
-        particle.draw(true);
-      } else {
-        particle.draw(false);
-      }
+      particle.draw(idx % 2 == 0);
       particle.checkParticles();
     });
   };
@@ -100,7 +96,7 @@ export default function sketch(p: p5): void {
 
         const di2 = p.dist(p.mouseX, p.mouseY, particle.pos.x, particle.pos.y);
 
-        if (d < lineLength && di > repelRadius && di2 > repelRadius) {
+        if (di2 > repelRadius) {
           const alpha = p.map(d, 0, 120, 0, 0.25);
           p.stroke(`rgba(255, 255, 255, ${alpha})`);
           p.line(this.pos.x, this.pos.y, particle.pos.x, particle.pos.y);

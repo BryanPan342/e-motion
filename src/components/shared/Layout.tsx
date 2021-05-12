@@ -57,7 +57,7 @@ function Layout(props: LayoutProps): JSX.Element {
 
   useEffect(() => {
     if (expoIdx >= scene.expo.length) return;
-    setTimeout( () => {
+    setTimeout(() => {
       animateUp(`.text-wrapper #expo-${expoIdx}`);
       timeout.current && clearTimeout(timeout.current);
       timeout.current = setTimeout(() => {
