@@ -50,20 +50,38 @@ function Layout(props: LayoutProps): JSX.Element {
   }, [sceneIdx]);
 
   useEffect(() => {
-    animateLeft('.foreground-image');
+    setTimeout(() => {
+      animateLeft('.foreground-image');
+    }, 5000);
   }, [scene]);
 
   useEffect(() => {
     if (expoIdx >= scene.expo.length) return;
 
-    animateUp(`.text-wrapper #expo-${expoIdx}`);
-    timeout.current && clearTimeout(timeout.current);
-    timeout.current = setTimeout(() => {
-      if (expoIdx === scene.expo.length - 1) showButton(nextRef);
-      animateOutUp(`.text-wrapper #expo-${expoIdx}`);
-      setExpoIdx(expoIdx + 1);
-      timeout.current = null;
-    }, (scene.expo[expoIdx].duration ?? 2000));
+    // wait 6 seconds for first expoIdx to load in
+    if (expoIdx == 0) {
+      setTimeout(() => {
+        animateUp(`.text-wrapper #expo-${expoIdx}`);
+        timeout.current && clearTimeout(timeout.current);
+        timeout.current = setTimeout(() => {
+          if (expoIdx === scene.expo.length - 1) showButton(nextRef);
+          animateOutUp(`.text-wrapper #expo-${expoIdx}`);
+          setExpoIdx(expoIdx + 1);
+          timeout.current = null;
+        }, scene.expo[expoIdx].duration ?? 2000);
+      }, 6000);
+    }
+    else{
+      animateUp(`.text-wrapper #expo-${expoIdx}`);
+      timeout.current && clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
+        if (expoIdx === scene.expo.length - 1) showButton(nextRef);
+        animateOutUp(`.text-wrapper #expo-${expoIdx}`);
+        setExpoIdx(expoIdx + 1);
+        timeout.current = null;
+      }, scene.expo[expoIdx].duration ?? 2000);
+    }
+
   }, [expoIdx]);
 
   const next = () => {
