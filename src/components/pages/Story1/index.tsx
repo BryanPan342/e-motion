@@ -4,6 +4,7 @@ import Scene1_fg from '../../../assets/scene1_neutral.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
+import Scene4_bg from '../../sketches/Scene4_neutral';
 import test from '../../sketches/test';
 import test2 from '../../sketches/test2';
 
@@ -24,6 +25,20 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene1_fg,
+    },
+    {
+      sketch: Scene4_bg,
+      expo: [
+        {
+          text: 'forrest test',
+          duration: 3000,
+        },
+        {
+          text: 'so slow no wonder u in online school',
+          duration: 2000,
+        },
+      ],
+      image: Wireframe,
     },
     {
       sketch: test,
