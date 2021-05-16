@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import Scene1_fg from '../../../assets/scene1_neutral.png';
+import Scene1_fg from '../../../assets/Scene1_neutral.png';
+import Scene4_fg from '../../../assets/Scene4_cheerful.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
@@ -12,6 +13,20 @@ function Story1(): JSX.Element {
   const history = useHistory();
 
   const content: SceneProps[] = [
+    {
+      sketch: Scene4_bg,
+      expo: [
+        {
+          text: 'forrest test',
+          duration: 3000,
+        },
+        {
+          text: 'so slow no wonder u in online school',
+          duration: 2000,
+        },
+      ],
+      image: Scene4_fg,
+    },
     {
       sketch: Scene1_bg,
       expo: [
@@ -26,20 +41,7 @@ function Story1(): JSX.Element {
       ],
       image: Scene1_fg,
     },
-    {
-      sketch: Scene4_bg,
-      expo: [
-        {
-          text: 'forrest test',
-          duration: 3000,
-        },
-        {
-          text: 'so slow no wonder u in online school',
-          duration: 2000,
-        },
-      ],
-      image: Wireframe,
-    },
+
     {
       sketch: test,
       expo: [
