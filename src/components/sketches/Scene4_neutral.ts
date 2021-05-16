@@ -7,8 +7,7 @@ export default function sketch(p: p5): void {
   const max = 2880 + 1440;
   const easing = 0.05;
   let gravity: p5.Vector;
-  const R_particle = 7;
-
+  const R_particle = 7; // Radius ring particle ***
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
@@ -62,12 +61,8 @@ export default function sketch(p: p5): void {
       ringParticles[i].update();
       if (ringParticles[i].delete()) {
         ringParticles.splice(i, 1);
-        // trail = 255;
       } else {
         ringParticles[i].show();
-        if (ringParticles[i].explode) {
-          // trail = 25;
-        }
       }
     }
   };
@@ -251,8 +246,8 @@ export default function sketch(p: p5): void {
           this.vel = p5.Vector.random2D();
           this.vel.mult(p.random(2, 10));
         }
-        this.vel.mult(0.9);
-        this.lifespan -= 4;
+        this.vel.mult(0.8); // vel change ***
+        this.lifespan -= 4; // lifespan ***
 
         const v = p.createVector(this.pos.x, this.pos.y);
         // var v2 = createVector(this.pos.x,this.pos.y-1);
@@ -262,8 +257,8 @@ export default function sketch(p: p5): void {
         // this.history.push(v2);
         // this.history.push(v3);
 
-        //size of trail
-        if (this.history.length > 5) {
+        //size of trail ***
+        if (this.history.length > 10) {
           this.history.splice(0, 1);
         }
       }
