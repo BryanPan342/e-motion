@@ -11,3 +11,14 @@ export type UseP5 = [
 export type ButtonRef = React.MutableRefObject<HTMLButtonElement | null>;
 
 export type AnimeTarget = string | DOMTokenList;
+
+export interface Point {
+  x: number,
+  y: number,
+}
+
+export interface RainPoint extends Point {
+  len: number,
+  velocity: number,
+  circle_offset: number,
+}

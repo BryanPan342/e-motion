@@ -4,7 +4,7 @@ import Scene1_fg from '../../../assets/scene1_neutral.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
-import test from '../../sketches/test';
+import Scene2 from '../../sketches/Scene2';
 import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
@@ -26,7 +26,7 @@ function Story1(): JSX.Element {
       image: Scene1_fg,
     },
     {
-      sketch: test,
+      sketch: Scene2,
       expo: [
         {
           text: 'My parents didn’t know much about deafness. They were young.',
