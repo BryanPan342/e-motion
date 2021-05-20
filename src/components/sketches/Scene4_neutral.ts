@@ -7,7 +7,7 @@ export default function sketch(p: p5): void {
   const max = 2880 + 1440;
   const easing = 0.05;
   let gravity: p5.Vector;
-  const R_particle = 7; // Radius ring particle ***
+  const R_particle = 13; // Radius ring particle ***
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
@@ -33,8 +33,8 @@ export default function sketch(p: p5): void {
 
   p.draw = () => {
     //p.colorMode(p.RGB);
-    p.background(0);
-    //p.background(0, 0, 0, 25); // easy trails but deletes rings quickly
+    // p.background(0);
+    p.background(0, 0, 0, 25); // easy trails but deletes rings quickly
 
     p.ellipse(p.mouseX,p.mouseY, 5,5);
     if (p.random(1) < 0.03) {
@@ -147,7 +147,7 @@ export default function sketch(p: p5): void {
       this.firework = firework;
       this.lifespan = 255;
       this.acc = p.createVector(0, 0);
-      this.ran = p.random(0, 4);
+      this.ran = p.random(0, 3);
       if (this.firework) {
         this.vel = p.createVector(0, p.random(-12, -8));
       } else {
@@ -184,10 +184,10 @@ export default function sketch(p: p5): void {
 
       if (!this.firework) {
         // after explosion
-        p.strokeWeight(2);
+        p.strokeWeight(6);
         p.stroke(255, 211, 97, this.lifespan);
       } else {
-        p.strokeWeight(4);
+        p.strokeWeight(8);
         //stroke('rgba(255,255,0, 1)');
       }
 
@@ -197,8 +197,7 @@ export default function sketch(p: p5): void {
       //fireworkColor.setAlpha(100);
       if (this.ran < 1) p.stroke('rgba(255,211,97,0.2)');
       else if (this.ran < 2) p.stroke('rgba(255,211,97,0.4)');
-      else if (this.ran < 3) p.stroke('rgba(255,211,97,0.6)');
-      else p.stroke('rgba(255,211,97,0.8)');
+      else p.stroke('rgba(255,211,97,0.6)');
 
       p.point(this.pos.x, this.pos.y);
     }
@@ -246,8 +245,8 @@ export default function sketch(p: p5): void {
           this.vel = p5.Vector.random2D();
           this.vel.mult(p.random(2, 10));
         }
-        this.vel.mult(0.8); // vel change ***
-        this.lifespan -= 4; // lifespan ***
+        this.vel.mult(0.95); // vel change ***
+        this.lifespan -= 5; // lifespan ***
 
         const v = p.createVector(this.pos.x, this.pos.y);
         // var v2 = createVector(this.pos.x,this.pos.y-1);
@@ -284,7 +283,7 @@ export default function sketch(p: p5): void {
         p.ellipse(this.pos.x, this.pos.y, this.r);
       } else {
         p.strokeWeight(4);
-        p.stroke(255, 211, 97, this.lifespan);
+        p.stroke(255, 211, 97, this.lifespan*3/5);
         // point(this.pos.x, this.pos.y);
 
         for (let i = 0; i < this.history.length; i++) {

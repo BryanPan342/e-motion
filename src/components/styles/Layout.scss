@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  cursor: none;
 }
 
 #p5-background {
@@ -20,6 +19,7 @@
   z-index: 2;
   width: 100%;
   height: auto;
+  cursor: none;
 }
 
 .text-wrapper {
