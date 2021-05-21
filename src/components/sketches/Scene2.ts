@@ -1,4 +1,5 @@
 import p5 from 'p5';
+import { inEllipse, Point, RainPoint, rand, randInEllipse } from '../../utils';
 import {
   CLOUD_HEIGHT_MAX,
   CLOUD_HEIGHT_MIN,
@@ -13,7 +14,6 @@ import {
   RAIN_RATE,
   RAIN_Y_MAX,
 } from '../../utils/constants';
-import { inEllipse, Point, RainPoint, rand, randInEllipse } from '../../utils';
 
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
@@ -52,17 +52,17 @@ export default function sketch(p: p5): void {
 
   class Cloud {
     public clouds: _CloudSection[];
-  
+
     constructor(p_x: number, p_y: number, p_rain: Rain) {
       this.clouds = CLOUD_SECTION_OFFSETS.map(({x, y}) => {
         return new _CloudSection(p_x + x, p_y + y, p_rain);
       });
     }
-  
+
     public checkRain() {
       this.clouds.forEach(c => c.checkRain());
     }
-  
+
     public draw() {
       this.clouds.forEach((c) => {
         c.draw();
@@ -72,23 +72,23 @@ export default function sketch(p: p5): void {
 
   class Rain {
     private _rain: RainPoint[];
-  
+
     constructor() {
       this._rain = [];
     }
-  
+
     addRain(x: number, y: number) {
       const len = rand(50, 100);
       const velocity = rand(6, 8);
       this._rain.push({x, y, len, velocity});
     }
-  
+
     draw() {
       const t_rain: RainPoint[] = [];
-  
+
       p.stroke('rgba(0, 175, 231, 0.20)');
       p.strokeWeight(4);
-  
+
       this._rain.forEach(({x, y, len, velocity}) => {
         p.line(x, y, x, y + len);
         const n_y = y + velocity;
@@ -105,23 +105,23 @@ export default function sketch(p: p5): void {
     public y: number;
     public width: number;
     public height: number;
-  
+
     private _rain: Rain;
     private _particles: Point[];
-  
+
     constructor(p_x: number, p_y: number, p_rain: Rain) {
       this.x = p_x;
       this.y = p_y;
       this._rain = p_rain;
-  
+
       this.width = rand(CLOUD_WIDTH_MIN, CLOUD_WIDTH_MAX);
       this.height = rand(CLOUD_HEIGHT_MIN, CLOUD_HEIGHT_MAX);
-  
+
       this._particles = Array(NUM_CLOUD_SECTION_PARTICLES).fill(0).map(() => {
         return randInEllipse(this.width, this.height);
       });
     }
-  
+
     public checkRain() {
       if (inEllipse(this.x - p.mouseX, this.y - p.mouseY, this.width, this.height)) {
         if (rand(0, RAIN_RATE) < 1) {
@@ -134,7 +134,7 @@ export default function sketch(p: p5): void {
         }
       }
     }
-  
+
     public draw() {
       p.fill('rgba(0, 175, 231, 0.20)');
       p.noStroke();

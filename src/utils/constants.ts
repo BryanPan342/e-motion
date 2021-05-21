@@ -9,15 +9,15 @@ export const PARTICLE_DIAMETER = 15;
 
 export const CLOUD_OFFSETS = [
   {x: -1 * window.innerWidth / 3, y: -1 * window.innerWidth / 14 },
-  {x: -1 * window.innerWidth / 8, y:      window.innerWidth / 14 },
-  {x:      window.innerWidth / 8, y: -1 * window.innerWidth /  9 },
-  {x:      window.innerWidth / 3, y:                           0 },
+  {x: -1 * window.innerWidth / 8, y: window.innerWidth / 14 },
+  {x: window.innerWidth / 8, y: -1 * window.innerWidth /  9 },
+  {x: window.innerWidth / 3, y: 0 },
 ];
 
 export const CLOUD_SECTION_OFFSETS = [
-  {x: -80, y:   0},     // left
-  {x:  80, y:   0},     // right
-  {x:  30, y:  30},     // below
+  {x: -80, y: 0},     // left
+  {x: 80, y: 0},     // right
+  {x: 30, y: 30},     // below
   {x: -20, y: -50},     // above
 ];
 
