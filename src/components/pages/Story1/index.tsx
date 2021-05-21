@@ -12,20 +12,6 @@ function Story1(): JSX.Element {
 
   const content: SceneProps[] = [
     {
-      sketch: Scene1_bg,
-      expo: [
-        {
-          text: 'george why so lonely go play ball ',
-          duration: 3000,
-        },
-        {
-          text: 'so slow no wonder u in online school',
-          duration: 2000,
-        },
-      ],
-      image: Scene1_fg,
-    },
-    {
       sketch: Scene2,
       expo: [
         {
@@ -38,6 +24,20 @@ function Story1(): JSX.Element {
         },
       ],
       image: Wireframe,
+    },
+    {
+      sketch: Scene1_bg,
+      expo: [
+        {
+          text: 'george why so lonely go play ball ',
+          duration: 3000,
+        },
+        {
+          text: 'so slow no wonder u in online school',
+          duration: 2000,
+        },
+      ],
+      image: Scene1_fg,
     },
     {
       sketch: test2,
