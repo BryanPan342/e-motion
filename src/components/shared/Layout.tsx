@@ -41,7 +41,7 @@ function Layout(props: LayoutProps): JSX.Element {
 
     if (sceneIdx >= scenes.length) exit();
 
-    animateOutRight('.foreground-image');
+    if (sceneIdx > 0) animateOutRight('.foreground-image');
 
     setTimeout(() => {
       setScene(scenes[sceneIdx]);
