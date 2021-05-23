@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import Scene4_color from "../../../assets/colorFirework.png";
 import Scene1_fg from '../../../assets/Scene1_neutral.png';
 import Scene4_fg from '../../../assets/Scene4_cheerful.png';
 import Wireframe from '../../../assets/wireframe.png';
@@ -25,7 +26,7 @@ function Story1(): JSX.Element {
           duration: 2000,
         },
       ],
-      image: Scene4_fg,
+      image: Scene4_color,
     },
     {
       sketch: Scene1_bg,
