@@ -123,15 +123,13 @@ export default function sketch(p: p5): void {
     }
 
     public checkRain() {
-      if (inEllipse(this.x - p.mouseX, this.y - p.mouseY, this.width, this.height)) {
-        if (rand(0, RAIN_RATE) < 1) {
-          Array(NUM_RAIN).fill(0).map(() => {
-            const offset = rand(-1 * RAIN_RADIUS, RAIN_RADIUS);
-            const r_x = p.mouseX + offset, r_y = p.mouseY + offset;
-            if (inEllipse(this.x - r_x, this.y - r_y, this.width, this.height))
-              this._rain.addRain(r_x, r_y);
-          });
-        }
+      if (inEllipse(this.x - p.mouseX, this.y - p.mouseY, this.width, this.height) && rand(0, RAIN_RATE) < 1) {
+        Array(NUM_RAIN).fill(0).map(() => {
+          const offset = rand(-1 * RAIN_RADIUS, RAIN_RADIUS);
+          const r_x = p.mouseX + offset, r_y = p.mouseY + offset;
+          if (inEllipse(this.x - r_x, this.y - r_y, this.width, this.height))
+            this._rain.addRain(r_x, r_y);
+        });
       }
     }
 

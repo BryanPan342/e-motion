@@ -8,9 +8,9 @@ export const NUM_CLOUD_SECTION_PARTICLES = 150;
 export const PARTICLE_DIAMETER = 15;
 
 export const CLOUD_OFFSETS = [
-  {x: -1 * window.innerWidth / 3, y: -1 * window.innerWidth / 14 },
-  {x: -1 * window.innerWidth / 8, y: window.innerWidth / 14 },
-  {x: window.innerWidth / 8, y: -1 * window.innerWidth /  9 },
+  {x: -1 * window.innerWidth / 3, y: -1 * window.innerHeight / 14 },
+  {x: -1 * window.innerWidth / 8, y: window.innerHeight / 14 },
+  {x: window.innerWidth / 8, y: -1 * window.innerHeight /  9 },
   {x: window.innerWidth / 3, y: 0 },
 ];
 
