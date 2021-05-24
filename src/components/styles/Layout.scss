@@ -6,20 +6,22 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  cursor: none;
 }
 
 #p5-background {
  position: fixed;
  z-index: 0;
  top: 0;
- left: 0; 
+ left: 0;
+ cursor: none;
 }
 
 .foreground-image {
   z-index: 2;
   width: 100%;
   height: auto;
+  opacity: 0;
+  cursor: none;
 }
 
 .text-wrapper {

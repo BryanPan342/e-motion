@@ -1,10 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import Scene1_fg from '../../../assets/scene1_neutral.png';
+import Scene2_fg from '../../../assets/scene2.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
-import test from '../../sketches/test';
+import Scene2_bg from '../../sketches/Scene2';
 import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
@@ -26,18 +27,34 @@ function Story1(): JSX.Element {
       image: Scene1_fg,
     },
     {
-      sketch: test,
+      sketch: Scene2_bg,
       expo: [
         {
-          text: 'My parents didn’t know much about deafness. They were young.',
+          text: 'I didn’t get my first hearing aids until elementary school.',
           duration: 3000,
         },
         {
-          text: 'bryan is so cool he is amazing',
+          text: 'And those helped a lot, but they didn’t actually restore my hearing, they just amplified sound.',
+          duration: 3000,
+        },
+        {
+          text: 'It could be hard to pinpoint voices.',
+          duration: 3000,
+        },
+        {
+          text: 'And I still had to read lips, so I was constantly asking people to talk slower.',
+          duration: 3000,
+        },
+        {
+          text: 'It was exhausting.',
+          duration: 3000,
+        },
+        {
+          text: 'And I felt like a burden, like I was constantly pushing my disability on other people.',
           duration: 3000,
         },
       ],
-      image: Wireframe,
+      image: Scene2_fg,
     },
     {
       sketch: test2,
