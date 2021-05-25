@@ -1,13 +1,19 @@
 import p5 from 'p5';
+import {
+  MAX_RING_PARTICLES,
+  EASING,
+  RING_RADIUS,
+  RING_COVERAGE,
+  EXPLODE_RANGE,
+  EXPLODE_OFFSET,
+  FIREWORK_LIFESPAN
+} from '../../utils/constants';
+
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
-
   const fireworks: Firework[] = [];
   const ringParticles: ringParticle[] = [];
-  const max = 2880 + 1440;
-  const easing = 0.05;
   let gravity: p5.Vector;
-  const R_particle = 13; // Radius ring particle ***
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
@@ -32,8 +38,6 @@ export default function sketch(p: p5): void {
   };
 
   p.draw = () => {
-    //p.colorMode(p.RGB);
-    // p.background(0);
     p.background(0, 0, 0, 25); // easy trails but deletes rings quickly
 
     p.ellipse(p.mouseX,p.mouseY, 5,5);
@@ -51,9 +55,9 @@ export default function sketch(p: p5): void {
     }
 
     // If too many ringParticles on screen
-    if (ringParticles.length > max) {
+    if (ringParticles.length > MAX_RING_PARTICLES) {
       // Delete old ringParticles (from beginning of array)
-      ringParticles.splice(0, p.floor((ringParticles.length - max * 0.8) * easing));
+      ringParticles.splice(0, p.floor((ringParticles.length - MAX_RING_PARTICLES * 0.8) * EASING));
     }
 
     // Loop through the array and show each particle
@@ -68,7 +72,7 @@ export default function sketch(p: p5): void {
   };
   // Spawn ringParticles in ring with centre mouse x and y coords
   p.mouseClicked = () => {
-    for (let i = 0; i < 360; i += 4) {
+    for (let i = 0; i < RING_COVERAGE; i += 4) {
       const c = new ringParticle(p.mouseX, p.mouseY, i);
       ringParticles.push(c);
     }
@@ -81,7 +85,7 @@ export default function sketch(p: p5): void {
     particles: Array<Particle>;
 
     constructor() {
-      this.explodeSize = p.random(0, 6);
+      this.explodeSize = p.random(0, EXPLODE_RANGE);
       this.firework = new Particle(p.random(p.width), p.height, true);
       this.exploded = false;
       this.particles = [];
@@ -127,7 +131,7 @@ export default function sketch(p: p5): void {
     }
 
     explode() {
-      for (let i = 0; i < this.explodeSize * 15; i++) {
+      for (let i = 0; i < this.explodeSize * EXPLODE_OFFSET; i++) {
         const particle = new Particle(this.firework.pos.x, this.firework.pos.y, false);
         this.particles.push(particle);
       }
@@ -145,7 +149,7 @@ export default function sketch(p: p5): void {
     constructor(x: number, y: number, firework: boolean) {
       this.pos = p.createVector(x, y);
       this.firework = firework;
-      this.lifespan = 255;
+      this.lifespan = FIREWORK_LIFESPAN;
       this.acc = p.createVector(0, 0);
       this.ran = p.random(0, 3);
       if (this.firework) {
@@ -180,21 +184,14 @@ export default function sketch(p: p5): void {
     }
 
     show() {
-      //p.colorMode(p.HSB);
-
       if (!this.firework) {
         // after explosion
         p.strokeWeight(6);
         p.stroke(255, 211, 97, this.lifespan);
       } else {
         p.strokeWeight(8);
-        //stroke('rgba(255,255,0, 1)');
       }
 
-      //let fireworkColor = "#ffd361";
-      //fireworkColor.setAlpha(100);
-      //stroke(fireworkColor);
-      //fireworkColor.setAlpha(100);
       if (this.ran < 1) p.stroke('rgba(255,211,97,0.2)');
       else if (this.ran < 2) p.stroke('rgba(255,211,97,0.4)');
       else p.stroke('rgba(255,211,97,0.6)');
@@ -216,7 +213,7 @@ export default function sketch(p: p5): void {
     constructor(x: number, y: number, rot: number) {
       this.pos = p.createVector(x, y); // Position
       this.vel = p.createVector(2, 2); // Velocity
-      this.r = R_particle; //3*noise(this.pos.x/250, this.pos.y/250)*5;
+      this.r = RING_RADIUS; //3*noise(this.pos.x/250, this.pos.y/250)*5;
       this.vel.limit(5);
       this.acc = p.createVector(0.1, 0.1); // Acceleration
       this.vel.rotate(rot); // Rotate velocity to the given rotation (avoids complicated maths)
@@ -224,7 +221,7 @@ export default function sketch(p: p5): void {
       this.time = 0; // Time alive
       this.explode = false;
 
-      this.lifespan = 255;
+      this.lifespan = FIREWORK_LIFESPAN;
       this.history = [];
     }
     update() {
@@ -238,7 +235,7 @@ export default function sketch(p: p5): void {
         }
         this.time++;
       } else {
-        if (this.lifespan == 255) {
+        if (this.lifespan == FIREWORK_LIFESPAN) {
           this.explode = true;
           this.applyForce(p.createVector(0, 0.3));
 
@@ -249,12 +246,7 @@ export default function sketch(p: p5): void {
         this.lifespan -= 5; // lifespan ***
 
         const v = p.createVector(this.pos.x, this.pos.y);
-        // var v2 = createVector(this.pos.x,this.pos.y-1);
-        // var v3 = createVector(this.pos.x,this.pos.y-2);
-
         this.history.push(v);
-        // this.history.push(v2);
-        // this.history.push(v3);
 
         //size of trail ***
         if (this.history.length > 10) {
@@ -284,7 +276,6 @@ export default function sketch(p: p5): void {
       } else {
         p.strokeWeight(4);
         p.stroke(255, 211, 97, this.lifespan*3/5);
-        // point(this.pos.x, this.pos.y);
 
         for (let i = 0; i < this.history.length; i++) {
           const pos = this.history[i];
