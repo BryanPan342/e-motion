@@ -6,7 +6,10 @@ import {
   RING_COVERAGE,
   EXPLODE_RANGE,
   EXPLODE_OFFSET,
-  FIREWORK_LIFESPAN
+  FIREWORK_LIFESPAN,
+  LIFESPAN_DECREMENT,
+  VELOCITY_CHANGE,
+  TRAIL_SIZE
 } from '../../utils/constants';
 
 export default function sketch(p: p5): void {
@@ -242,14 +245,14 @@ export default function sketch(p: p5): void {
           this.vel = p5.Vector.random2D();
           this.vel.mult(p.random(2, 10));
         }
-        this.vel.mult(0.95); // vel change ***
-        this.lifespan -= 5; // lifespan ***
+        this.vel.mult(VELOCITY_CHANGE); // vel change ***
+        this.lifespan -= LIFESPAN_DECREMENT; // lifespan ***
 
         const v = p.createVector(this.pos.x, this.pos.y);
         this.history.push(v);
 
         //size of trail ***
-        if (this.history.length > 10) {
+        if (this.history.length > TRAIL_SIZE) {
           this.history.splice(0, 1);
         }
       }

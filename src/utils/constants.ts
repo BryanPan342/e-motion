@@ -35,3 +35,6 @@ export const EXPLODE_RANGE = 6;
 export const EXPLODE_OFFSET = 15;   // after a random number is generated from 1-EXPLODE_RANGE, it is multiplied by EXPLODE_OFFSET to get
                                     // the total number of particles for a background firework
 export const FIREWORK_LIFESPAN = 255;
+export const LIFESPAN_DECREMENT = 5;
+export const VELOCITY_CHANGE = 0.95;
+export const TRAIL_SIZE = 10;
