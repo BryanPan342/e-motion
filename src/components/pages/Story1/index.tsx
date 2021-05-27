@@ -10,7 +10,6 @@ import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene5_bg from '../../sketches/Scene5_happy';
 import Scene2_fg from '../../../assets/scene2.png';
 import Scene2_bg from '../../sketches/Scene2';
-import test from '../../sketches/test';
 import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
