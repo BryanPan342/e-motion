@@ -6,7 +6,7 @@ import Scene5_fg from '../../../assets/scene5.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
-import Scene5_bg from '../../sketches/Scene4_neutral';
+import Scene5_bg from '../../sketches/Scene5_happy';
 import test from '../../sketches/test';
 import test2 from '../../sketches/test2';
 

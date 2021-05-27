@@ -9,7 +9,7 @@ import {
   FIREWORK_LIFESPAN,
   LIFESPAN_DECREMENT,
   VELOCITY_CHANGE,
-  TRAIL_SIZE
+  TRAIL_SIZE,
 } from '../../utils/constants';
 
 export default function sketch(p: p5): void {

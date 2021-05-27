@@ -26,14 +26,13 @@ export const RAIN_RADIUS = 50;
 export const NUM_RAIN = 3;
 export const RAIN_Y_MAX = window.innerHeight * 3 / 4;
 
-// SCENE 4 CONSTANTS
+// SCENE 5 CONSTANTS
 export const EASING = 0.05;
 export const MAX_RING_PARTICLES = 2880 + 1440;
 export const RING_RADIUS = 13;
 export const RING_COVERAGE = 360;   // in degrees (0 - 360)
 export const EXPLODE_RANGE = 6;
-export const EXPLODE_OFFSET = 15;   // after a random number is generated from 1-EXPLODE_RANGE, it is multiplied by EXPLODE_OFFSET to get
-                                    // the total number of particles for a background firework
+export const EXPLODE_OFFSET = 15;   // after a random number is generated from 1-EXPLODE_RANGE, it is multiplied by EXPLODE_OFFSET to get the total number of particles for a background firework
 export const FIREWORK_LIFESPAN = 255;
 export const LIFESPAN_DECREMENT = 5;
 export const VELOCITY_CHANGE = 0.95;
