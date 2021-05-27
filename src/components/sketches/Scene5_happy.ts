@@ -15,12 +15,11 @@ import {
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
   const fireworks: Firework[] = [];
-  const ringParticles: ringParticle[] = [];
+  const ringParticles: RingParticle[] = [];
   let gravity: p5.Vector;
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
-    //p.colorMode(p.HSB);
     canvas.id('p5-background');
     gravity = p.createVector(0, 0.095);
     p.stroke(255);
@@ -29,7 +28,6 @@ export default function sketch(p: p5): void {
 
     // Setting mode to degrees for spawning ringParticles in circle
     p.angleMode(p.DEGREES);
-    p.background(0);
     // Sets 0,0 to centre
     p.translate(p.width / 2, p.height / 2);
     // Max number of ringParticles
@@ -76,118 +74,105 @@ export default function sketch(p: p5): void {
   // Spawn ringParticles in ring with centre mouse x and y coords
   p.mouseClicked = () => {
     for (let i = 0; i < RING_COVERAGE; i += 4) {
-      const c = new ringParticle(p.mouseX, p.mouseY, i);
+      const c = new RingParticle(p.mouseX, p.mouseY, i);
       ringParticles.push(c);
     }
   };
 
   class Firework {
-    explodeSize: number;
-    firework: Particle;
-    exploded: boolean;
-    particles: Array<Particle>;
+    public explodeSize: number;
+    public exploded: boolean;
+    private _firingParticle: Particle;
+    private _particles: Array<Particle>;
 
     constructor() {
       this.explodeSize = p.random(0, EXPLODE_RANGE);
-      this.firework = new Particle(p.random(p.width), p.height, true);
+      this._firingParticle = new Particle(p.random(p.width), p.height, true);
       this.exploded = false;
-      this.particles = [];
+      this._particles = [];
     }
 
     update() {
       if (!this.exploded) {
-        this.firework.applyForce(gravity);
-        this.firework.update();
+        this._firingParticle.update(gravity);
 
-        if (this.firework.vel.y >= 0) {
-          this.exploded = true;
+        if (this._firingParticle.vel.y >= 0) {
           this.explode();
         }
       }
 
-      for (let i = this.particles.length - 1; i >= 0; i--) {
-        this.particles[i].applyForce(gravity);
-        this.particles[i].update();
+      for (let i = this._particles.length - 1; i >= 0; i--) {
+        this._particles[i].update(gravity);
 
-        if (this.particles[i].done()) {
-          this.particles.splice(i, 1);
+        if (this._particles[i].done()) {
+          this._particles.splice(i, 1);
         }
       }
     }
 
     done() {
-      if (this.exploded && this.particles.length === 0) {
-        return true;
-      } else {
-        return false;
-      }
+      return (this.exploded && this._particles.length === 0);
     }
 
     show() {
       if (!this.exploded) {
-        this.firework.show();
+        this._firingParticle.show();
       }
 
-      for (let i = 0; i < this.particles.length; i++) {
-        this.particles[i].show();
+      for (let i = 0; i < this._particles.length; i++) {
+        this._particles[i].show();
       }
     }
 
     explode() {
+      this.exploded = true;
       for (let i = 0; i < this.explodeSize * EXPLODE_OFFSET; i++) {
-        const particle = new Particle(this.firework.pos.x, this.firework.pos.y, false);
-        this.particles.push(particle);
+        const particle = new Particle(
+          this._firingParticle.pos.x,
+          this._firingParticle.pos.y,
+          false,
+        );
+        this._particles.push(particle);
       }
     }
   }
 
   class Particle {
     pos: p5.Vector;
-    firework: boolean;
+    public isFirework: boolean;
     lifespan: number;
-    acc: p5.Vector;
-    ran: number;
+    private _acc: p5.Vector;
+    rand: number;
     vel: p5.Vector;
 
     constructor(x: number, y: number, firework: boolean) {
       this.pos = p.createVector(x, y);
-      this.firework = firework;
+      this.isFirework = firework;
       this.lifespan = FIREWORK_LIFESPAN;
-      this.acc = p.createVector(0, 0);
-      this.ran = p.random(0, 3);
-      if (this.firework) {
-        this.vel = p.createVector(0, p.random(-12, -8));
-      } else {
-        this.vel = p5.Vector.random2D();
-        this.vel.mult(p.random(2, 10));
-      }
+      this._acc = p.createVector(0, 0);
+      this.rand = p.random(0, 3);
+      this.vel = this.isFirework
+        ? p.createVector(0, p.random(-12, -8))
+        : p5.Vector.random2D().mult(p.random(2, 10));
     }
 
-    applyForce(force: p5.Vector) {
-      this.acc.add(force);
-    }
-
-    update() {
-      if (!this.firework) {
+    update(force: p5.Vector) {
+      if (!this.isFirework) {
         this.vel.mult(0.9);
         this.lifespan -= 4;
       }
-
-      this.vel.add(this.acc);
+      this._acc.add(force);
+      this.vel.add(this._acc);
       this.pos.add(this.vel);
-      this.acc.mult(0);
+      this._acc.mult(0);
     }
 
     done() {
-      if (this.lifespan < 0) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.lifespan < 0;
     }
 
     show() {
-      if (!this.firework) {
+      if (!this.isFirework) {
         // after explosion
         p.strokeWeight(6);
         p.stroke(255, 211, 97, this.lifespan);
@@ -195,32 +180,30 @@ export default function sketch(p: p5): void {
         p.strokeWeight(8);
       }
 
-      if (this.ran < 1) p.stroke('rgba(255,211,97,0.2)');
-      else if (this.ran < 2) p.stroke('rgba(255,211,97,0.4)');
-      else p.stroke('rgba(255,211,97,0.6)');
-
+      const opacity = this.rand < 1 ? 0.2 : this.rand < 2 ? 0.4 : 0.6;
+      p.stroke(`rgba(255,211,97,${opacity})`);
       p.point(this.pos.x, this.pos.y);
     }
   }
 
-  class ringParticle {
+  class RingParticle {
     pos: p5.Vector;
     vel: p5.Vector;
     acc: p5.Vector;
-    r: number;
+    radius: number;
     time: number;
     explode: boolean;
     lifespan: number;
     history: p5.Vector[];
 
-    constructor(x: number, y: number, rot: number) {
+    constructor(x: number, y: number, theta: number) {
       this.pos = p.createVector(x, y); // Position
       this.vel = p.createVector(2, 2); // Velocity
-      this.r = RING_RADIUS; //3*noise(this.pos.x/250, this.pos.y/250)*5;
+      this.radius = RING_RADIUS; //3*noise(this.pos.x/250, this.pos.y/250)*5;
       this.vel.limit(5);
       this.acc = p.createVector(0.1, 0.1); // Acceleration
-      this.vel.rotate(rot); // Rotate velocity to the given rotation (avoids complicated maths)
-      this.acc.rotate(rot); // Rotate to the given rotation (avoids complicated maths)
+      this.vel.rotate(theta); // Rotate velocity to the given rotation
+      this.acc.rotate(theta); // Rotate to the given rotation
       this.time = 0; // Time alive
       this.explode = false;
 
@@ -234,13 +217,13 @@ export default function sketch(p: p5): void {
       if (this.time <= 40) {
         // If older than 15, reduce the size of the ringParticles every step
         if (this.time > 15) {
-          this.r -= 0.05;
+          this.radius -= 0.05;
         }
         this.time++;
       } else {
         if (this.lifespan == FIREWORK_LIFESPAN) {
           this.explode = true;
-          this.applyForce(p.createVector(0, 0.3));
+          this.acc.add(p.createVector(0, 0.3));
 
           this.vel = p5.Vector.random2D();
           this.vel.mult(p.random(2, 10));
@@ -253,19 +236,12 @@ export default function sketch(p: p5): void {
 
         //size of trail ***
         if (this.history.length > TRAIL_SIZE) {
-          this.history.splice(0, 1);
+          this.history.shift();
         }
       }
     }
-    applyForce(force: p5.Vector) {
-      this.acc.add(force);
-    }
     delete() {
-      if (this.lifespan < 0) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.lifespan < 0;
     }
 
     show() {
@@ -275,10 +251,10 @@ export default function sketch(p: p5): void {
         p.fill(255, 211, 97, 204);
 
         // Draw point
-        p.ellipse(this.pos.x, this.pos.y, this.r);
+        p.ellipse(this.pos.x, this.pos.y, this.radius);
       } else {
         p.strokeWeight(4);
-        p.stroke(255, 211, 97, this.lifespan*3/5);
+        p.stroke(255, 211, 97, (this.lifespan * 3) / 5);
 
         for (let i = 0; i < this.history.length; i++) {
           const pos = this.history[i];
