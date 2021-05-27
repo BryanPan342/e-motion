@@ -187,77 +187,77 @@ export default function sketch(p: p5): void {
   }
 
   class RingParticle {
-    pos: p5.Vector;
-    vel: p5.Vector;
-    acc: p5.Vector;
-    radius: number;
-    time: number;
-    explode: boolean;
-    lifespan: number;
-    history: p5.Vector[];
+    private _pos: p5.Vector;
+    private _vel: p5.Vector;
+    private _acc: p5.Vector;
+    private _radius: number;
+    private _time: number;
+    private _explode: boolean;
+    private _lifespan: number;
+    private _history: p5.Vector[];
 
     constructor(x: number, y: number, theta: number) {
-      this.pos = p.createVector(x, y); // Position
-      this.vel = p.createVector(2, 2); // Velocity
-      this.radius = RING_RADIUS; //3*noise(this.pos.x/250, this.pos.y/250)*5;
-      this.vel.limit(5);
-      this.acc = p.createVector(0.1, 0.1); // Acceleration
-      this.vel.rotate(theta); // Rotate velocity to the given rotation
-      this.acc.rotate(theta); // Rotate to the given rotation
-      this.time = 0; // Time alive
-      this.explode = false;
+      this._pos = p.createVector(x, y); // Position
+      this._vel = p.createVector(2, 2); // Velocity
+      this._radius = RING_RADIUS; //3*noise(this.pos.x/250, this.pos.y/250)*5;
+      this._vel.limit(5);
+      this._acc = p.createVector(0.1, 0.1); // Acceleration
+      this._vel.rotate(theta); // Rotate velocity to the given rotation
+      this._acc.rotate(theta); // Rotate to the given rotation
+      this._time = 0; // Time alive
+      this._explode = false;
 
-      this.lifespan = FIREWORK_LIFESPAN;
-      this.history = [];
+      this._lifespan = FIREWORK_LIFESPAN;
+      this._history = [];
     }
-    update() {
-      this.vel.add(this.acc);
-      this.pos.add(this.vel); // Update position with velocity
+    public update() {
+      this._vel.add(this._acc);
+      this._pos.add(this._vel); // Update position with velocity
       // If older than 40, be deleted next draw event
-      if (this.time <= 40) {
+      if (this._time <= 40) {
         // If older than 15, reduce the size of the ringParticles every step
-        if (this.time > 15) {
-          this.radius -= 0.05;
+        if (this._time > 15) {
+          this._radius -= 0.05;
         }
-        this.time++;
+        this._time++;
       } else {
-        if (this.lifespan == FIREWORK_LIFESPAN) {
-          this.explode = true;
-          this.acc.add(p.createVector(0, 0.3));
+        if (this._lifespan == FIREWORK_LIFESPAN) {
+          this._explode = true;
+          this._acc.add(p.createVector(0, 0.3));
 
-          this.vel = p5.Vector.random2D();
-          this.vel.mult(p.random(2, 10));
+          this._vel = p5.Vector.random2D();
+          this._vel.mult(p.random(2, 10));
         }
-        this.vel.mult(VELOCITY_CHANGE); // vel change ***
-        this.lifespan -= LIFESPAN_DECREMENT; // lifespan ***
+        this._vel.mult(VELOCITY_CHANGE); // vel change ***
+        this._lifespan -= LIFESPAN_DECREMENT; // lifespan ***
 
-        const v = p.createVector(this.pos.x, this.pos.y);
-        this.history.push(v);
+        const v = p.createVector(this._pos.x, this._pos.y);
+        this._history.push(v);
 
         //size of trail ***
-        if (this.history.length > TRAIL_SIZE) {
-          this.history.shift();
+        if (this._history.length > TRAIL_SIZE) {
+          this._history.shift();
         }
       }
     }
-    delete() {
-      return this.lifespan < 0;
+    public delete() {
+      return this._lifespan < 0;
     }
 
-    show() {
-      if (this.explode == false) {
+    public show() {
+      if (this._explode == false) {
         p.noStroke();
         // Set colour based on average of x and y position
         p.fill(255, 211, 97, 204);
 
         // Draw point
-        p.ellipse(this.pos.x, this.pos.y, this.radius);
+        p.ellipse(this._pos.x, this._pos.y, this._radius);
       } else {
         p.strokeWeight(4);
-        p.stroke(255, 211, 97, (this.lifespan * 3) / 5);
+        p.stroke(255, 211, 97, (this._lifespan * 3) / 5);
 
-        for (let i = 0; i < this.history.length; i++) {
-          const pos = this.history[i];
+        for (let i = 0; i < this._history.length; i++) {
+          const pos = this._history[i];
           p.point(pos.x, pos.y);
         }
       }
