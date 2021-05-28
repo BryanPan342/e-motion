@@ -64,7 +64,7 @@ export default function sketch(p: p5): void {
     /** Loop through the array and show each particle */
     for (let i = 0; i < ringParticles.length; i++) {
       ringParticles[i].update();
-      if (ringParticles[i].delete()) {
+      if (ringParticles[i].done()) {
         ringParticles.splice(i, 1);
       } else {
         ringParticles[i].show();
@@ -153,7 +153,7 @@ export default function sketch(p: p5): void {
         : p5.Vector.random2D().mult(p.random(2, 10));
     }
 
-    update(force: p5.Vector) {
+    public update(force: p5.Vector) {
       if (!this.isFirework) {
         this.vel.mult(0.9);
         this.lifespan -= 4;
@@ -164,11 +164,11 @@ export default function sketch(p: p5): void {
       this._acc.mult(0);
     }
 
-    done() {
+    public done() {
       return this.lifespan < 0;
     }
 
-    show() {
+    public show() {
       if (!this.isFirework) {
         /** after explosion */
         p.strokeWeight(6);
@@ -244,7 +244,7 @@ export default function sketch(p: p5): void {
         }
       }
     }
-    public delete() {
+    public done() {
       return this._lifespan < 0;
     }
 
@@ -259,10 +259,7 @@ export default function sketch(p: p5): void {
         p.strokeWeight(4);
         p.stroke(255, 211, 97, (this._lifespan * 3) / 5);
 
-        for (let i = 0; i < this._history.length; i++) {
-          const pos = this._history[i];
-          p.point(pos.x, pos.y);
-        }
+        this._history.map(pos => p.point(pos.x, pos.y));
       }
     }
   }
