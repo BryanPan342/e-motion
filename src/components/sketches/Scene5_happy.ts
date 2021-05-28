@@ -1,7 +1,6 @@
 import p5 from 'p5';
 import {
   MAX_RING_PARTICLES,
-  EASING,
   RING_RADIUS,
   RING_COVERAGE,
   EXPLODE_RANGE,
@@ -58,7 +57,7 @@ export default function sketch(p: p5): void {
     // If too many ringParticles on screen
     if (ringParticles.length > MAX_RING_PARTICLES) {
       // Delete old ringParticles (from beginning of array)
-      ringParticles.splice(0, p.floor((ringParticles.length - MAX_RING_PARTICLES * 0.8) * EASING));
+      ringParticles.splice(0, MAX_RING_PARTICLES/2);
     }
 
     // Loop through the array and show each particle
@@ -92,7 +91,7 @@ export default function sketch(p: p5): void {
       this._particles = [];
     }
 
-    update() {
+    public update() {
       if (!this.exploded) {
         this._firingParticle.update(gravity);
 
@@ -101,20 +100,17 @@ export default function sketch(p: p5): void {
         }
       }
 
-      for (let i = this._particles.length - 1; i >= 0; i--) {
-        this._particles[i].update(gravity);
-
-        if (this._particles[i].done()) {
-          this._particles.splice(i, 1);
-        }
-      }
+      this._particles = this._particles.filter((particle) => {
+        particle.update(gravity);
+        return !particle.done();
+      });
     }
 
-    done() {
+    public done() {
       return (this.exploded && this._particles.length === 0);
     }
 
-    show() {
+    public show() {
       if (!this.exploded) {
         this._firingParticle.show();
       }
@@ -124,7 +120,7 @@ export default function sketch(p: p5): void {
       }
     }
 
-    explode() {
+    private explode() {
       this.exploded = true;
       for (let i = 0; i < this.explodeSize * EXPLODE_OFFSET; i++) {
         const particle = new Particle(
@@ -145,9 +141,9 @@ export default function sketch(p: p5): void {
     rand: number;
     vel: p5.Vector;
 
-    constructor(x: number, y: number, firework: boolean) {
+    constructor(x: number, y: number, isFirework: boolean) {
       this.pos = p.createVector(x, y);
-      this.isFirework = firework;
+      this.isFirework = isFirework;
       this.lifespan = FIREWORK_LIFESPAN;
       this._acc = p.createVector(0, 0);
       this.rand = p.random(0, 3);
@@ -247,7 +243,6 @@ export default function sketch(p: p5): void {
     public show() {
       if (this._explode == false) {
         p.noStroke();
-        // Set colour based on average of x and y position
         p.fill(255, 211, 97, 204);
 
         // Draw point
