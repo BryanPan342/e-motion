@@ -249,7 +249,7 @@ export default function sketch(p: p5): void {
     }
 
     public show() {
-      if (this._explode == false) {
+      if (!this._explode) {
         p.noStroke();
         p.fill(255, 211, 97, 204);
 
