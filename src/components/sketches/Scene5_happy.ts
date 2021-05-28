@@ -25,11 +25,11 @@ export default function sketch(p: p5): void {
     p.strokeWeight(4);
     p.background(0);
 
-    // Setting mode to degrees for spawning ringParticles in circle
+    /** Setting mode to degrees for spawning ringParticles in circle */
     p.angleMode(p.DEGREES);
-    // Sets 0,0 to centre
+    /** Sets 0,0 to centre */
     p.translate(p.width / 2, p.height / 2);
-    // Max number of ringParticles
+    /** Max number of ringParticles */
     p.frameRate(30);
   };
 
@@ -38,9 +38,10 @@ export default function sketch(p: p5): void {
   };
 
   p.draw = () => {
-    p.background(0, 0, 0, 25); // easy trails but deletes rings quickly
+    /** easy trails but rings trail */
+    p.background(0, 0, 0, 25);
 
-    p.ellipse(p.mouseX,p.mouseY, 5,5);
+    p.ellipse(p.mouseX, p.mouseY, 5, 5);
     if (p.random(1) < 0.03) {
       fireworks.push(new Firework());
     }
@@ -54,13 +55,13 @@ export default function sketch(p: p5): void {
       }
     }
 
-    // If too many ringParticles on screen
+    /** If too many ringParticles on screen */
     if (ringParticles.length > MAX_RING_PARTICLES) {
-      // Delete old ringParticles (from beginning of array)
-      ringParticles.splice(0, MAX_RING_PARTICLES/2);
+      /** Delete old ringParticles (from beginning of array) */
+      ringParticles.splice(0, MAX_RING_PARTICLES / 2);
     }
 
-    // Loop through the array and show each particle
+    /** Loop through the array and show each particle */
     for (let i = 0; i < ringParticles.length; i++) {
       ringParticles[i].update();
       if (ringParticles[i].delete()) {
@@ -70,7 +71,7 @@ export default function sketch(p: p5): void {
       }
     }
   };
-  // Spawn ringParticles in ring with centre mouse x and y coords
+  /** Spawn ringParticles in ring with centre mouse x and y coords */
   p.mouseClicked = () => {
     for (let i = 0; i < RING_COVERAGE; i += 4) {
       const c = new RingParticle(p.mouseX, p.mouseY, i);
@@ -107,7 +108,7 @@ export default function sketch(p: p5): void {
     }
 
     public done() {
-      return (this.exploded && this._particles.length === 0);
+      return this.exploded && this._particles.length === 0;
     }
 
     public show() {
@@ -169,7 +170,7 @@ export default function sketch(p: p5): void {
 
     show() {
       if (!this.isFirework) {
-        // after explosion
+        /** after explosion */
         p.strokeWeight(6);
         p.stroke(255, 211, 97, this.lifespan);
       } else {
@@ -193,14 +194,20 @@ export default function sketch(p: p5): void {
     private _history: p5.Vector[];
 
     constructor(x: number, y: number, theta: number) {
-      this._pos = p.createVector(x, y); // Position
-      this._vel = p.createVector(2, 2); // Velocity
-      this._radius = RING_RADIUS; //3*noise(this.pos.x/250, this.pos.y/250)*5;
+      /** Position */
+      this._pos = p.createVector(x, y);
+      /** Velocity */
+      this._vel = p.createVector(2, 2);
+      this._radius = RING_RADIUS;
       this._vel.limit(5);
-      this._acc = p.createVector(0.1, 0.1); // Acceleration
-      this._vel.rotate(theta); // Rotate velocity to the given rotation
-      this._acc.rotate(theta); // Rotate to the given rotation
-      this._time = 0; // Time alive
+      /** Acceleration */
+      this._acc = p.createVector(0.1, 0.1);
+      /** Rotate velocity to the given rotation*/
+      this._vel.rotate(theta);
+      /** Rotate to the given rotation */
+      this._acc.rotate(theta);
+      /** Time alive */
+      this._time = 0;
       this._explode = false;
 
       this._lifespan = FIREWORK_LIFESPAN;
@@ -208,10 +215,11 @@ export default function sketch(p: p5): void {
     }
     public update() {
       this._vel.add(this._acc);
-      this._pos.add(this._vel); // Update position with velocity
-      // If older than 40, be deleted next draw event
+      /** Update position with velocity*/
+      this._pos.add(this._vel);
+      /** If older than 40, be deleted next draw event*/
       if (this._time <= 40) {
-        // If older than 15, reduce the size of the ringParticles every step
+        /** If older than 15, reduce the size of the ringParticles every step*/
         if (this._time > 15) {
           this._radius -= 0.05;
         }
@@ -224,13 +232,13 @@ export default function sketch(p: p5): void {
           this._vel = p5.Vector.random2D();
           this._vel.mult(p.random(2, 10));
         }
-        this._vel.mult(VELOCITY_CHANGE); // vel change ***
-        this._lifespan -= LIFESPAN_DECREMENT; // lifespan ***
+        this._vel.mult(VELOCITY_CHANGE);
+        this._lifespan -= LIFESPAN_DECREMENT;
 
         const v = p.createVector(this._pos.x, this._pos.y);
         this._history.push(v);
 
-        //size of trail ***
+        /** size of trail */
         if (this._history.length > TRAIL_SIZE) {
           this._history.shift();
         }
@@ -245,7 +253,7 @@ export default function sketch(p: p5): void {
         p.noStroke();
         p.fill(255, 211, 97, 204);
 
-        // Draw point
+        /** Draw point */
         p.ellipse(this._pos.x, this._pos.y, this._radius);
       } else {
         p.strokeWeight(4);
