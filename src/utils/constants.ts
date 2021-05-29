@@ -25,3 +25,8 @@ export const RAIN_RATE = 15;
 export const RAIN_RADIUS = 50;
 export const NUM_RAIN = 3;
 export const RAIN_Y_MAX = window.innerHeight * 3 / 4;
+
+// SCENE 4 CONSTANTS
+export const LINE_THICKNESS = 4;
+export const POINT_RADIUS = 8;
+export const POINT_FREQUENCY = 0.03;

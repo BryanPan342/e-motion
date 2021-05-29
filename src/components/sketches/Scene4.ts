@@ -1,4 +1,11 @@
 import p5 from 'p5';
+import {
+  LINE_THICKNESS, 
+  POINT_RADIUS,
+  POINT_FREQUENCY
+} from '../../utils/constants';
+
+
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
   let xo = 1;
@@ -50,7 +57,11 @@ export default function sketch(p: p5): void {
       );
 
       points[i].add(p.createVector(p.cos(angle), p.sin(angle)));
-      p.ellipse(points[i].x, points[i].y, 6);
+      p.ellipse(points[i].x, points[i].y, LINE_THICKNESS);
+     
+      if (p.random() < POINT_FREQUENCY) {
+        p.ellipse(points[i].x, points[i].y, POINT_RADIUS);
+      }
     }
 
     const dx = p.mouseX - xo;
@@ -59,9 +70,13 @@ export default function sketch(p: p5): void {
     const dy = p.mouseY - yo;
     yo += dy * easing;
 
-    p.square(xo, yo, 66);
-    p.fill('yellow');
-    p.ellipse(p.mouseX, p.mouseY, 44);
+    p.point(p.mouseX, p.mouseY, 66);
+    // p.square(xo, yo, 66);
+    // p.fill('yellow');
+    // p.ellipse(p.mouseX, p.mouseY, 44);
+    // p.fill('red');
+
+    p.ellipse(p.mouseX, p.mouseY, POINT_RADIUS);
     p.fill('red');
   };
 }

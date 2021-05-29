@@ -14,6 +14,16 @@ function Story1(): JSX.Element {
 
   const content: SceneProps[] = [
     {
+      sketch: Scene4_bg,
+      expo: [
+        {
+          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
+          duration: 3000,
+        },
+      ],
+      image: Wireframe,
+    },
+    {
       sketch: Scene1_bg,
       expo: [
         {
