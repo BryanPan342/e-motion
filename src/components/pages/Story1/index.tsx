@@ -6,6 +6,7 @@ import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
+import Scene4_bg from '../../sketches/Scene4';
 import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
@@ -58,6 +59,16 @@ function Story1(): JSX.Element {
     },
     {
       sketch: test2,
+      expo: [
+        {
+          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
+          duration: 3000,
+        },
+      ],
+      image: Wireframe,
+    },
+    {
+      sketch: Scene4_bg,
       expo: [
         {
           text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
