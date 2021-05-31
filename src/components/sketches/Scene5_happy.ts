@@ -184,6 +184,7 @@ export default function sketch(p: p5): void {
   }
 
   class RingParticle {
+    /** The position of the Ring Particle */
     private _pos: p5.Vector;
     private _vel: p5.Vector;
     private _acc: p5.Vector;
@@ -194,7 +195,6 @@ export default function sketch(p: p5): void {
     private _history: p5.Vector[];
 
     constructor(x: number, y: number, theta: number) {
-      /** Position */
       this._pos = p.createVector(x, y);
       /** Velocity */
       this._vel = p.createVector(2, 2);
