@@ -229,8 +229,7 @@ export default function sketch(p: p5): void {
           this._explode = true;
           this._acc.add(p.createVector(0, 0.3));
 
-          this._vel = p5.Vector.random2D();
-          this._vel.mult(p.random(2, 10));
+          this._vel = p5.Vector.random2D().mult(p.random(2, 10));
         }
         this._vel.mult(VELOCITY_CHANGE);
         this._lifespan -= LIFESPAN_DECREMENT;
