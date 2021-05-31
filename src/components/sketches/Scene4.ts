@@ -1,9 +1,10 @@
-import p5 from 'p5';
-// import {
-//   LINE_THICKNESS,
-//   POINT_RADIUS,
-//   POINT_FREQUENCY,
-// } from '../../utils/constants';
+import p5 from "p5";
+import {
+  BUBBLE_FREQUENCY,
+  BUBBLE_FREQUENCY_ON_LINES,
+  TRANSPARENCY,
+  TRANSPARENCY_RADIUS,
+} from "../../utils/constants";
 
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
@@ -17,19 +18,18 @@ export default function sketch(p: p5): void {
   const magInc = 0.0005;
   let start = 0;
   const scl = 10;
-  let cols:number;
-  let rows:number;
+  let cols: number;
+  let rows: number;
   let zoff = 0;
   const particles: Particle[] = [];
   const numParticles = 500;
-  let flowfield: p5.Vector [];
-  let flowcolorfield: number [][];
+  let flowfield: p5.Vector[];
   let magOff = 0;
   const showField = false;
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
-    canvas.id('p5-background');
+    canvas.id("p5-background");
     p.pixelDensity(1);
     cols = p.floor(window.innerWidth / scl);
     rows = p.floor(window.innerHeight / scl);
@@ -40,10 +40,7 @@ export default function sketch(p: p5): void {
     }
 
     flowfield = new Array(rows * cols);
-    flowcolorfield = new Array(rows * cols);
-    for (let i = 0; i < flowcolorfield.length; i++) {
-			flowcolorfield[i] = new Array(3);
-		}
+
   };
 
   p.draw = () => {
@@ -86,16 +83,14 @@ export default function sketch(p: p5): void {
     start -= magInc;
 
     if (!showField) {
-
       for (let i = 0; i < particles.length; i++) {
-        particles[i].follow(flowfield, flowcolorfield);
+        particles[i].follow(flowfield);
         particles[i].update();
         particles[i].edges();
         particles[i].show();
       }
 
       if (p.random(10) > 5 && particles.length < 2500) {
-
         const rnd = p.floor(p.noise(zoff) * 20);
         for (let i = 0; i < rnd; i++) {
           particles.push(new Particle());
@@ -126,56 +121,62 @@ export default function sketch(p: p5): void {
   class Particle {
     public pos: p5.Vector;
     public vel: p5.Vector;
-    public acc: p5.Vector;
-    private _maxSpeed:number;
-    public prevPos: p5.Vector;
+    private _acc: p5.Vector;
+    private _maxSpeed: number;
+    public _prevPos: p5.Vector;
+    private _bubble: number;
 
     constructor() {
-      this.pos = p.createVector(p.random(window.innerWidth), p.random(window.innerHeight));
+      this.pos = p.createVector(p.random(window.innerWidth),p.random(window.innerHeight));
       this.vel = p.createVector(0, 0);
-      this.acc = p.createVector(0, 0);
+      this._acc = p.createVector(0, 0);
       this._maxSpeed = 2;
+      this._bubble = p.random();
 
-      this.prevPos = this.pos.copy();
+      this._prevPos = this.pos.copy();
     }
 
-
-    public update () {
-
-      this.vel.add(this.acc);
+    public update() {
+      this.vel.add(this._acc);
       this.vel.limit(this._maxSpeed);
       this.pos.add(this.vel);
-      this.acc.mult(0);
+      this._acc.mult(0);
     }
 
-    public show () {
-
-
+    public show() {
       p.strokeWeight(1);
-      p.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
+      p.line(this.pos.x, this.pos.y, this._prevPos.x, this._prevPos.y);
       this.updatePrev();
       //point(this.pos.x, this.pos.y);
     }
 
-    public updatePrev () {
-      this.prevPos.x = this.pos.x;
-      this.prevPos.y = this.pos.y;
+    public updatePrev() {
+      this._prevPos.x = this.pos.x;
+      this._prevPos.y = this.pos.y;
     }
 
-    public edges () {
+    public edges() {
       this.updatePrev();
     }
 
-    public follow (vectors:p5.Vector [], colorfield:number [][]) {
-
+    public follow(vectors: p5.Vector[]) {
       const x = p.floor(this.pos.x / scl);
       const y = p.floor(this.pos.y / scl);
       const index = x + y * cols;
-      const force = vectors[index];
-      this.acc.add(force);
-      const c = colorfield[index];
-      if (c) {
-        p.stroke(p.color(50, 250,50));
+      this._acc.add(vectors[index]);
+
+      /** drawing depending on bubble */
+      const di = p.dist(p.mouseX, p.mouseY, this.pos.x, this.pos.y);
+      if (di <= TRANSPARENCY_RADIUS) {
+        p.stroke(p.color(0, 255, 0));
+        if (this._bubble < BUBBLE_FREQUENCY) {
+          if (p.random() < BUBBLE_FREQUENCY_ON_LINES) {
+            p.fill(0, 255, 0);
+            p.ellipse(this.pos.x, this.pos.y, 4);
+          }
+        }
+      } else {
+        p.stroke(`rgba(${0}, ${255}, ${0}, ${TRANSPARENCY})`);
       }
     }
   }

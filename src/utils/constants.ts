@@ -27,6 +27,11 @@ export const NUM_RAIN = 3;
 export const RAIN_Y_MAX = window.innerHeight * 3 / 4;
 
 // SCENE 4 CONSTANTS
-export const LINE_THICKNESS = 4;
-export const POINT_RADIUS = 8;
-export const POINT_FREQUENCY = 0.03;
+/**  How many lines have bubbles. range of (0 - 1)*/
+export const BUBBLE_FREQUENCY = 0.2;
+/**  How many bubbles are on each line*/
+export const BUBBLE_FREQUENCY_ON_LINES = 0.08;
+/**  range of (0 - 1) */
+export const TRANSPARENCY = 0.3;
+/**  range of (0 - 1) */
+export const TRANSPARENCY_RADIUS = 120; // range of (0 - 1)
