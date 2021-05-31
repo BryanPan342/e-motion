@@ -16,40 +16,6 @@ function Story1(): JSX.Element {
 
   const content: SceneProps[] = [
     {
-      sketch: Scene5_bg,
-      expo: [
-        {
-          text: 'After school Brian and I would watch a lot of TV together. ',
-          duration: 3000,
-        },
-        {
-          text: 'It was a safe space for me.',
-          duration: 3000,
-        },
-        {
-          text: 'He was the one person that I never had to ask to turn on subtitles. ',
-          duration: 3000,
-        },
-        {
-          text: 'There was no obligation to socialize, or interact, or anything else I struggled with.',
-          duration: 3000,
-        },
-        {
-          text: 'We’d just sit there. And be together. ',
-          duration: 3000,
-        },
-        {
-          text: 'Maybe it didn’t mean much to him, because he had so many friends. But it meant a lot to me [joy].',
-          duration: 3000,
-        },
-        {
-          text: 'Both of us are grown now. We’ve matured a lot. And we understand each other better. ',
-          duration: 3000,
-        },
-      ],
-      image: Scene5_fg,
-    },
-    {
       sketch: Scene1_bg,
       expo: [
         {
