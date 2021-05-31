@@ -7,8 +7,8 @@ import p5 from 'p5';
 
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
-  let xo = 1;
-  let yo = 1;
+  const xo = 1;
+  const yo = 1;
   const easing = 0.1;
   // const points: p5.Vector[] = [];
 
@@ -20,7 +20,7 @@ export default function sketch(p: p5): void {
   let cols:number;
   let rows:number;
   let zoff = 0;
-  let particles: Particle[];
+  const particles: Particle[] = [];
   const numParticles = 500;
   let flowfield: p5.Vector [];
   let flowcolorfield: number [][];
@@ -31,8 +31,8 @@ export default function sketch(p: p5): void {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
     canvas.id('p5-background');
     p.pixelDensity(1);
-    cols = p.floor(p.width / scl);
-    rows = p.floor(p.height / scl);
+    cols = p.floor(window.innerWidth / scl);
+    rows = p.floor(window.innerHeight / scl);
     p.background(0);
 
     for (let i = 0; i < numParticles; i++) {
@@ -41,6 +41,9 @@ export default function sketch(p: p5): void {
 
     flowfield = new Array(rows * cols);
     flowcolorfield = new Array(rows * cols);
+    for (let i = 0; i < flowcolorfield.length; i++) {
+			flowcolorfield[i] = new Array(3);
+		}
   };
 
   p.draw = () => {
@@ -83,6 +86,7 @@ export default function sketch(p: p5): void {
     start -= magInc;
 
     if (!showField) {
+
       for (let i = 0; i < particles.length; i++) {
         particles[i].follow(flowfield, flowcolorfield);
         particles[i].update();
@@ -91,6 +95,7 @@ export default function sketch(p: p5): void {
       }
 
       if (p.random(10) > 5 && particles.length < 2500) {
+
         const rnd = p.floor(p.noise(zoff) * 20);
         for (let i = 0; i < rnd; i++) {
           particles.push(new Particle());
@@ -126,7 +131,7 @@ export default function sketch(p: p5): void {
     public prevPos: p5.Vector;
 
     constructor() {
-      this.pos = p.createVector(p.random(p.width), p.random(p.height));
+      this.pos = p.createVector(p.random(window.innerWidth), p.random(window.innerHeight));
       this.vel = p.createVector(0, 0);
       this.acc = p.createVector(0, 0);
       this._maxSpeed = 2;
@@ -136,6 +141,7 @@ export default function sketch(p: p5): void {
 
 
     public update () {
+
       this.vel.add(this.acc);
       this.vel.limit(this._maxSpeed);
       this.pos.add(this.vel);
@@ -143,6 +149,8 @@ export default function sketch(p: p5): void {
     }
 
     public show () {
+
+
       p.strokeWeight(1);
       p.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
       this.updatePrev();
@@ -159,6 +167,7 @@ export default function sketch(p: p5): void {
     }
 
     public follow (vectors:p5.Vector [], colorfield:number [][]) {
+
       const x = p.floor(this.pos.x / scl);
       const y = p.floor(this.pos.y / scl);
       const index = x + y * cols;
@@ -166,7 +175,7 @@ export default function sketch(p: p5): void {
       this.acc.add(force);
       const c = colorfield[index];
       if (c) {
-        p.stroke(p.color(c[0], c[1], c[2]));
+        p.stroke(p.color(50, 250,50));
       }
     }
   }
