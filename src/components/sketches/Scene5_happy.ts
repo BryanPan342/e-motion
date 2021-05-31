@@ -96,7 +96,7 @@ export default function sketch(p: p5): void {
       if (!this.exploded) {
         this._firingParticle.update(gravity);
 
-        if (this._firingParticle.vel.y >= 0) {
+        if (this._firingParticle._vel.y >= 0) {
           this.explode();
         }
       }
@@ -135,44 +135,40 @@ export default function sketch(p: p5): void {
   }
 
   class Particle {
-    pos: p5.Vector;
+    public pos: p5.Vector;
     public isFirework: boolean;
-    lifespan: number;
-    private _acc: p5.Vector;
-    rand: number;
-    vel: p5.Vector;
+    private _lifespan: number;
+    private rand: number;
+    private _vel: p5.Vector;
 
     constructor(x: number, y: number, isFirework: boolean) {
       this.pos = p.createVector(x, y);
       this.isFirework = isFirework;
-      this.lifespan = FIREWORK_LIFESPAN;
-      this._acc = p.createVector(0, 0);
+      this._lifespan = FIREWORK_LIFESPAN;
       this.rand = p.random(0, 3);
-      this.vel = this.isFirework
+      this._vel = this.isFirework
         ? p.createVector(0, p.random(-12, -8))
         : p5.Vector.random2D().mult(p.random(2, 10));
     }
 
     public update(force: p5.Vector) {
       if (!this.isFirework) {
-        this.vel.mult(0.9);
-        this.lifespan -= 4;
+        this._vel.mult(0.9);
+        this._lifespan -= 4;
       }
-      this._acc.add(force);
-      this.vel.add(this._acc);
-      this.pos.add(this.vel);
-      this._acc.mult(0);
+      this._vel.add(force);
+      this.pos.add(this._vel);
     }
 
     public done() {
-      return this.lifespan < 0;
+      return this._lifespan < 0;
     }
 
     public show() {
       if (!this.isFirework) {
         /** after explosion */
         p.strokeWeight(6);
-        p.stroke(255, 211, 97, this.lifespan);
+        p.stroke(255, 211, 97, this._lifespan);
       } else {
         p.strokeWeight(8);
       }
@@ -185,7 +181,7 @@ export default function sketch(p: p5): void {
 
   class RingParticle {
     /** The position of the Ring Particle */
-    private _pos: p5.Vector;
+    public pos: p5.Vector;
     private _vel: p5.Vector;
     private _acc: p5.Vector;
     private _radius: number;
@@ -195,7 +191,7 @@ export default function sketch(p: p5): void {
     private _history: p5.Vector[];
 
     constructor(x: number, y: number, theta: number) {
-      this._pos = p.createVector(x, y);
+      this.pos = p.createVector(x, y);
       /** Velocity */
       this._vel = p.createVector(2, 2);
       this._radius = RING_RADIUS;
@@ -216,7 +212,7 @@ export default function sketch(p: p5): void {
     public update() {
       this._vel.add(this._acc);
       /** Update position with velocity*/
-      this._pos.add(this._vel);
+      this.pos.add(this._vel);
       /** If older than 40, be deleted next draw event*/
       if (this._time <= 40) {
         /** If older than 15, reduce the size of the ringParticles every step*/
@@ -234,8 +230,7 @@ export default function sketch(p: p5): void {
         this._vel.mult(VELOCITY_CHANGE);
         this._lifespan -= LIFESPAN_DECREMENT;
 
-        const v = p.createVector(this._pos.x, this._pos.y);
-        this._history.push(v);
+        this._history.push(p.createVector(this.pos.x, this.pos.y));
 
         /** size of trail */
         if (this._history.length > TRAIL_SIZE) {
@@ -253,7 +248,7 @@ export default function sketch(p: p5): void {
         p.fill(255, 211, 97, 204);
 
         /** Draw point */
-        p.ellipse(this._pos.x, this._pos.y, this._radius);
+        p.ellipse(this.pos.x, this.pos.y, this._radius);
       } else {
         p.strokeWeight(4);
         p.stroke(255, 211, 97, (this._lifespan * 3) / 5);
