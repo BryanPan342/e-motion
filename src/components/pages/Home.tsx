@@ -36,11 +36,27 @@ class Scene {
     const loader = new GLTFLoader();
     loader.load('/assets-3d/mug.glb', (gltf) => {
       gltf.scene.position.set(0, -100, 0);
+      gltf.scene.children.forEach((mesh) => {
+        if (!mesh.material.name.includes('Buffer Layer material 1')) return;
+        mesh.material = new THREE.MeshPhongMaterial({
+          color: mesh.material.color,
+          shininess: 15,
+          reflectivity: .8,
+          refractionRatio: .5,
+          specular: 0x010101,
+        });
+      });
       this.scene.add(gltf.scene);
     });
 
+    window.addEventListener('resize', this.resize, false);
     this.update();
+  }
 
+  private resize() {
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   private initLights(): void {
