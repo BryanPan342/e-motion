@@ -1,5 +1,27 @@
 @import 'variables';
 
 #home-container {
-  padding: 64px;
+  overflow: hidden;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+#start-button {
+  position: absolute;
+  left: 50vw;
+  top: 75vh;
+  transform: translate(-50%,-50%);
+  padding: 10px 50px;
+  border: 2px solid black;
+  letter-spacing: .2rem;
+  font-weight: bold;
+
+  // Hover changes
+  color: black;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 }

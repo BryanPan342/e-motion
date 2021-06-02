@@ -6,8 +6,15 @@ import '../styles/Home.scss';
 function Home(): JSX.Element {
   return (
     <div id={'home-container'}>
-      <h1>Home Page</h1>
-      <Link to={'/story1'}>Story 1</Link>
+      <iframe
+        id='b1a3cd5e-2ccd-4d2c-b37f-6598907b8b9a'
+        src='https://www.vectary.com/viewer/v1/?model=b1a3cd5e-2ccd-4d2c-b37f-6598907b8b9a&env=teufelsbergroof&turntable=2&showInteractionPrompt=0'
+        frameBorder='0'/>
+      <Link to='/story1'>
+        <div id={'start-button'}>
+          START
+        </div>
+      </Link>
     </div>
   );
 }
