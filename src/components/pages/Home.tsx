@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.scss';
 
 import * as THREE from 'three';
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 
 class Scene {
   perspective: number;
@@ -37,7 +37,7 @@ class Scene {
     loader.load('/assets-3d/mug.glb', (gltf) => {
       gltf.scene.position.set(0, -100, 0);
       this.scene.add(gltf.scene);
-    }, undefined, (error) => console.error(error));
+    });
 
     this.update();
 
@@ -52,11 +52,11 @@ class Scene {
     const light = new THREE.PointLight(0xc4c4c4,1);
     light.position.set(0,300,500);
     this.scene.add(light);
-    
+
     const light2 = new THREE.PointLight(0xc4c4c4,1);
     light2.position.set(500,100,0);
     this.scene.add(light2);
-    
+
     const light3 = new THREE.PointLight(0xc4c4c4,1);
     light3.position.set(0,100,-500);
     this.scene.add(light3);
