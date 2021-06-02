@@ -3,11 +3,13 @@ import { useHistory } from 'react-router';
 
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
+import Scene3_fg from '../../../assets/scene3.png';
 import Scene5_fg from '../../../assets/scene5.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
+import Scene3_bg from '../../sketches/Scene3';
 import Scene5_bg from '../../sketches/Scene5_happy';
 import test2 from '../../sketches/test2';
 
@@ -15,6 +17,20 @@ function Story1(): JSX.Element {
   const history = useHistory();
 
   const content: SceneProps[] = [
+    {
+      sketch: Scene3_bg,
+      expo: [
+        {
+          text: 'george why so lonely go play ball ',
+          duration: 3000,
+        },
+        {
+          text: 'so slow no wonder u in online school',
+          duration: 2000,
+        },
+      ],
+      image: Scene3_fg,
+    },
     {
       sketch: Scene1_bg,
       expo: [

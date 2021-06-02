@@ -28,6 +28,18 @@ export const RAIN_RADIUS = 50;
 export const NUM_RAIN = 3;
 export const RAIN_Y_MAX = (window.innerHeight * 3) / 4;
 
+
+// SCENE 3 CONSTANTS
+export const INIT_SPEED = 7;
+export const INIT_PARTICLES_COUNT = 100;
+export const BALL_RADIUS = 10;
+export const ACCEL = 0.3;
+
+export const BOUNDARY_RADIUS = 800;
+export const BOUNDARY_X = window.innerWidth * 0.4;
+export const BOUNDARY_Y = window.innerHeight * 0.7;
+
+
 // SCENE 5 CONSTANTS
 export const MAX_RING_PARTICLES = 2880 + 1440;
 export const RING_RADIUS = 13;
