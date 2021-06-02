@@ -30,6 +30,11 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene3_fg,
+      style: {
+        width: '60%',
+        margin: '0px 0px 5px 10%',
+        border: '0px solid white',
+      },
     },
     {
       sketch: Scene1_bg,
