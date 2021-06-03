@@ -1,3 +1,4 @@
+import CSS from 'csstype';
 import p5 from 'p5';
 import React, { useEffect, useRef, useState } from 'react';
 import { animateLeft, animateOutRight, animateOutUp, animateUp, hideButton, showButton} from '../../utils';
@@ -15,11 +16,7 @@ export interface SceneProps {
   expo: Exposition[];
   image: string;
   imageAlt?: string;
-  style?: {
-    width?: string,
-    margin?: string,
-    border?: string,
-  };
+  style?: CSS.Properties;
 }
 
 export interface LayoutProps {
