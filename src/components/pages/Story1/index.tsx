@@ -18,34 +18,19 @@ function Story1(): JSX.Element {
 
   const content: SceneProps[] = [
     {
-      sketch: Scene3_bg,
-      expo: [
-        {
-          text: 'george why so lonely go play ball ',
-          duration: 3000,
-        },
-        {
-          text: 'so slow no wonder u in online school',
-          duration: 2000,
-        },
-      ],
-      image: Scene3_fg,
-      style: {
-        width: '60%',
-        margin: '0px 0px 5px 10%',
-        border: '0px solid white',
-      },
-    },
-    {
       sketch: Scene1_bg,
       expo: [
         {
-          text: 'george why so lonely go play ball ',
+          text: 'My parents didn’t know much about deafness. They were young.',
           duration: 3000,
         },
         {
-          text: 'so slow no wonder u in online school',
-          duration: 2000,
+          text: 'They were adjusting to life in America.',
+          duration: 3000,
+        },
+        {
+          text: 'And they barely spoke English, so they had no way of advocating for me.',
+          duration: 3000,
         },
       ],
       image: Scene1_fg,
@@ -81,14 +66,27 @@ function Story1(): JSX.Element {
       image: Scene2_fg,
     },
     {
-      sketch: test2,
+      sketch: Scene3_bg,
       expo: [
         {
-          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
+          text: 'Eventually I just stopped trying to engage, which came with its own set of problems.',
+          duration: 3000,
+        },
+        {
+          text: 'I developed a reputation as someone who never spoke.',
+          duration: 3000,
+        },
+        {
+          text: 'I got bullied quite a bit.',
           duration: 3000,
         },
       ],
-      image: Wireframe,
+      image: Scene3_fg,
+      style: {
+        width: '60%',
+        margin: '0px 0px 5px 10%',
+        border: '0px solid white',
+      },
     },
     {
       sketch: Scene5_bg,
