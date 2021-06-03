@@ -5,38 +5,30 @@ import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
-import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene4_bg from '../../sketches/Scene4';
 import Scene5_bg from '../../sketches/Scene5_happy';
-import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
   const history = useHistory();
 
   const content: SceneProps[] = [
     {
-      sketch: Scene4_bg,
-      expo: [
-        {
-          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
-          duration: 3000,
-        },
-      ],
-      image: Scene4_fg,
-    },
-    {
       sketch: Scene1_bg,
       expo: [
         {
-          text: 'george why so lonely go play ball ',
+          text: 'My parents didn’t know much about deafness. They were young. ',
           duration: 3000,
         },
         {
-          text: 'so slow no wonder u in online school',
-          duration: 2000,
+          text: 'They were adjusting to life in America.',
+          duration: 3000,
+        },
+        {
+          text: 'And they barely spoke English, so they had no way of advocating for me.',
+          duration: 3000,
         },
       ],
       image: Scene1_fg,
@@ -72,25 +64,40 @@ function Story1(): JSX.Element {
       image: Scene2_fg,
     },
     {
-      sketch: test2,
-      expo: [
-        {
-          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
-          duration: 3000,
-        },
-      ],
-      image: Wireframe,
-    },
-    {
-
       sketch: Scene4_bg,
       expo: [
         {
-          text: 'blah blah blah more text.... asjdfalskdfjlqiwkejflidsf',
+          text: 'The majority of my social interaction came from my older brother Brian.',
+          duration: 3000,
+        },
+        {
+          text: 'It was just a typical sibling relationship.',
+          duration: 3000,
+        },
+        {
+          text: 'We annoyed each other, and got in fights.',
+          duration: 3000,
+        },
+        {
+          text: 'I envied how easily he made friends at school.',
+          duration: 3000,
+        },
+        {
+          text: 'But he always made a point of saying ‘hi’ to me in the hallway.',
+          duration: 3000,
+        },
+        {
+          text: 'He’d even scream it sometimes.',
+          duration: 3000,
+        },
+        {
+          text: 'And that meant so much to me. Because people could see, that even if I didn’t mean much to them, I was important to somebody.',
           duration: 3000,
         },
       ],
-      image: Wireframe,
+      image: Scene4_fg,
+    },
+    {
       sketch: Scene5_bg,
       expo: [
         {
