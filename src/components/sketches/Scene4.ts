@@ -144,7 +144,7 @@ export default function sketch(p: p5): void {
     }
 
     public show() {
-      p.strokeWeight(1);
+      p.strokeWeight(5);
       p.line(this.pos.x, this.pos.y, this._prevPos.x, this._prevPos.y);
       this.updatePrev();
       //point(this.pos.x, this.pos.y);
