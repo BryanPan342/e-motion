@@ -1,4 +1,4 @@
-import p5 from "p5";
+import p5 from 'p5';
 import {
   BUBBLE_FREQUENCY,
   BUBBLE_FREQUENCY_ON_LINES,
@@ -9,9 +9,8 @@ import {
   MAG_INC,
   SCL,
   NUM_PARTICLES,
-  STROKE_WEIGHT
-
-} from "../../utils/constants";
+  STROKE_WEIGHT,
+} from '../../utils/constants';
 
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
@@ -27,7 +26,7 @@ export default function sketch(p: p5): void {
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
-    canvas.id("p5-background");
+    canvas.id('p5-background');
     p.pixelDensity(1);
     cols = p.floor(window.innerWidth / SCL);
     rows = p.floor(window.innerHeight / SCL);
@@ -64,9 +63,9 @@ export default function sketch(p: p5): void {
           const endpoint = p.abs(m) * SCL;
           p.line(0, 0, endpoint, 0);
           if (m < 0) {
-            p.stroke("red");
+            p.stroke('red');
           } else {
-            p.stroke("green");
+            p.stroke('green');
           }
           p.line(endpoint - 2, 0, endpoint, 0);
           p.pop();
@@ -100,16 +99,6 @@ export default function sketch(p: p5): void {
         }
       }
     }
-
-    // p.background('black');
-
-    // const dx = p.mouseX - xo;
-    // xo += dx * easing;
-
-    // const dy = p.mouseY - yo;
-    // yo += dy * easing;
-
-    // p.ellipse(xo, yo, 66, 66);
   };
 
   p.windowResized = () => {
@@ -179,18 +168,3 @@ export default function sketch(p: p5): void {
     }
   }
 }
-
-// points[i].add(p.createVector(p.cos(angle), p.sin(angle)));
-// p.ellipse(points[i].x, points[i].y, LINE_THICKNESS);
-
-// if (p.random() < POINT_FREQUENCY) {
-// 	p.ellipse(points[i].x, points[i].y, POINT_RADIUS);
-// }
-
-//     p.point(p.mouseX, p.mouseY, 66);
-// 		// p.square(xo, yo, 66);
-// 		// p.fill('yellow');
-// 		// p.ellipse(p.mouseX, p.mouseY, 44);
-// 		// p.fill('red');
-
-// 		p.ellipse(p.mouseX, p.mouseY, POINT_RADIUS);
