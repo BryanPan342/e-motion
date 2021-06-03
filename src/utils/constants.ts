@@ -34,8 +34,6 @@ export const INIT_SPEED = 7;
 export const INIT_PARTICLES_COUNT = 100;
 export const ACCEL = 0.3;
 
-
-
 // SCENE 5 CONSTANTS
 export const MAX_RING_PARTICLES = 2880 + 1440;
 export const RING_RADIUS = 13;

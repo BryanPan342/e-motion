@@ -36,7 +36,6 @@ export default function sketch(p: p5): void {
     }
   };
   p.windowResized = () => {
-    console.log("hello");
     p.resizeCanvas(window.innerWidth, window.innerHeight, true);
   };
 
@@ -87,11 +86,8 @@ export default function sketch(p: p5): void {
     }
 
     public update () {
-      // this.vel.add(this.acc);
-
       this.pos.add(this._vel); // Update position with velocity
       this.edges(); // Check if hitting edge for rebound
-      // this.acc.mult(0);
     }
 
     public show() {
@@ -108,31 +104,22 @@ export default function sketch(p: p5): void {
 
       // If hitting edge, invert appropriate velocity
       if (this.pos.x < 0 + this._radius) {
-        // this.acc.add(createVector(ACCEL, ACCEL));
-
         this._acc.x *= -1;
         this._vel.x *= -1;
         this.pos.x = 0 + this._radius;
         this._vel.add(this._acc);
       } else if (this.pos.x > p.width - this._radius) {
-        // this.acc.add(createVector(ACCEL, ACCEL));
-
-
         this._acc.x *= -1;
         this._vel.x *= -1;
         this.pos.x = p.width - this._radius;
         this._vel.add(this._acc);
       }
       if (this.pos.y < 0 + this._radius) {
-        // this.acc.add(createVector(ACCEL, ACCEL));
-
         this._acc.y *= -1;
         this._vel.y *= -1;
         this.pos.y = 0 + this._radius;
         this._vel.add(this._acc);
       } else if (this.pos.y > p.height - this._radius) {
-        // this.acc.add(createVector(ACCEL, ACCEL));
-
         this._acc.y *= -1;
         this._vel.y *= -1;
         this.pos.y = p.height - this._radius;
@@ -140,13 +127,9 @@ export default function sketch(p: p5): void {
       } else if (p.sqrt(x_dist * x_dist + y_dist * y_dist) < BOUNDARY_RADIUS / 2) {
         this._vel.reflect(p.createVector(x_dist, y_dist));
       } else {
-        if (
-          p.sqrt(this._vel.x * this._vel.x + this._vel.y * this._vel.y) > INIT_SPEED
-        ) {
+        if (p.sqrt(this._vel.x * this._vel.x + this._vel.y * this._vel.y) > INIT_SPEED) {
           this._vel.limit(INIT_SPEED + 2);
-
         }
-        // this.vel.add(this.decc);
       }
     }
   }
