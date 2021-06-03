@@ -58,6 +58,7 @@ export default function sketch(p: p5): void {
       particles[i].show();
     }
   };
+
   /** Spawn ringParticles in ring with centre mouse x and y coords */
   p.mouseClicked = () => {
     particles.push(new Particle(p.mouseX, p.mouseY, p.random(0, 359), BALL_RADIUS, HOT_PINK));
@@ -107,27 +108,23 @@ export default function sketch(p: p5): void {
       if (this.pos.x < this._radius || this.pos.x > p.width - this._radius) {
         this._acc.x *= -1;
         this._vel.x *= -1;
-        this.pos.x =
-					this.pos.x > p.width - this._radius? p.width - this._radius : this._radius;
+        this.pos.x = this.pos.x > p.width - this._radius? p.width - this._radius : this._radius;
         this._vel.add(this._acc);
       }
       else if (this.pos.y < this._radius || this.pos.y > p.height - this._radius) {
         this._acc.y *= -1;
         this._vel.y *= -1;
-        this.pos.y =
-					this.pos.y > p.height - this._radius? p.height - this._radius : this._radius;
+        this.pos.y = this.pos.y > p.height - this._radius? p.height - this._radius : this._radius;
         this._vel.add(this._acc);
       } else if
       /** Bounce if touching Boundary */
       (p.sqrt(x_dist * x_dist + y_dist * y_dist) < BOUNDARY_RADIUS / 2) {
         this._vel.reflect(p.createVector(x_dist, y_dist));
-      } else {
-        /** If not hitting a wall ensure speed does not go past INIT_SPEED + 2 */
-        if (
-          p.sqrt(this._vel.x * this._vel.x + this._vel.y * this._vel.y) >
-					INIT_SPEED
-        )
-          this._vel.limit(INIT_SPEED + 2);
+      } else if
+      /** If not hitting a wall ensure speed does not go past INIT_SPEED + 2 */
+      (p.sqrt(this._vel.x * this._vel.x + this._vel.y * this._vel.y) >
+					INIT_SPEED) {
+        this._vel.limit(INIT_SPEED + 2);
       }
     }
   }

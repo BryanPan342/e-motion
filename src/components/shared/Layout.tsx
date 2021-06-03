@@ -1,4 +1,3 @@
-import CSS from 'csstype';
 import p5 from 'p5';
 import React, { useEffect, useRef, useState } from 'react';
 import { animateLeft, animateOutRight, animateOutUp, animateUp, hideButton, showButton} from '../../utils';
@@ -16,7 +15,7 @@ export interface SceneProps {
   expo: Exposition[];
   image: string;
   imageAlt?: string;
-  style?: CSS.Properties;
+  style?: React.CSS.Properties;
 }
 
 export interface LayoutProps {
@@ -93,7 +92,7 @@ function Layout(props: LayoutProps): JSX.Element {
   return (
     <div id={'layout'}>
       <P5Scene sketch={scene.sketch}/>
-      <img src={scene.image} alt={scene.imageAlt} className={'foreground-image'} style ={scene.style}/>
+      <img src={scene.image} alt={scene.imageAlt} className={'foreground-image'} style={scene.style}/>
       <div className={'text-wrapper'}>
         {scene.expo.map(({text}, i) =>
           <div key={`${sceneIdx}-${i}`}id={`expo-${i}`}>{text}</div>,
