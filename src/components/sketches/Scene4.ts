@@ -4,25 +4,23 @@ import {
   BUBBLE_FREQUENCY_ON_LINES,
   TRANSPARENCY,
   TRANSPARENCY_RADIUS,
+  INC,
+  INC_START,
+  MAG_INC,
+  SCL,
+  NUM_PARTICLES,
+  STROKE_WEIGHT
+
 } from "../../utils/constants";
 
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
-  const xo = 1;
-  const yo = 1;
-  const easing = 0.1;
-  // const points: p5.Vector[] = [];
 
-  const inc = 0.1;
-  const incStart = 0.005;
-  const magInc = 0.0005;
   let start = 0;
-  const scl = 10;
   let cols: number;
   let rows: number;
   let zoff = 0;
   const particles: Particle[] = [];
-  const numParticles = 500;
   let flowfield: p5.Vector[];
   let magOff = 0;
   const showField = false;
@@ -31,11 +29,11 @@ export default function sketch(p: p5): void {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
     canvas.id("p5-background");
     p.pixelDensity(1);
-    cols = p.floor(window.innerWidth / scl);
-    rows = p.floor(window.innerHeight / scl);
+    cols = p.floor(window.innerWidth / SCL);
+    rows = p.floor(window.innerHeight / SCL);
     p.background(0);
 
-    for (let i = 0; i < numParticles; i++) {
+    for (let i = 0; i < NUM_PARTICLES; i++) {
       particles[i] = new Particle();
     }
 
@@ -61,9 +59,9 @@ export default function sketch(p: p5): void {
         if (showField) {
           p.push();
           p.stroke(255);
-          p.translate(x * scl, y * scl);
+          p.translate(x * SCL, y * SCL);
           p.rotate(v.heading());
-          const endpoint = p.abs(m) * scl;
+          const endpoint = p.abs(m) * SCL;
           p.line(0, 0, endpoint, 0);
           if (m < 0) {
             p.stroke("red");
@@ -74,13 +72,13 @@ export default function sketch(p: p5): void {
           p.pop();
         }
         flowfield[index] = v;
-        xoff += inc;
+        xoff += INC;
       }
-      yoff += inc;
+      yoff += INC;
     }
-    magOff += magInc;
-    zoff += incStart;
-    start -= magInc;
+    magOff += MAG_INC;
+    zoff += INC_START;
+    start -= MAG_INC;
 
     if (!showField) {
       for (let i = 0; i < particles.length; i++) {
@@ -144,7 +142,7 @@ export default function sketch(p: p5): void {
     }
 
     public show() {
-      p.strokeWeight(1);
+      p.strokeWeight(STROKE_WEIGHT);
       p.line(this.pos.x, this.pos.y, this._prevPos.x, this._prevPos.y);
       this.updatePrev();
       //point(this.pos.x, this.pos.y);
@@ -160,8 +158,8 @@ export default function sketch(p: p5): void {
     }
 
     public follow(vectors: p5.Vector[]) {
-      const x = p.floor(this.pos.x / scl);
-      const y = p.floor(this.pos.y / scl);
+      const x = p.floor(this.pos.x / SCL);
+      const y = p.floor(this.pos.y / SCL);
       const index = x + y * cols;
       this._acc.add(vectors[index]);
 
@@ -176,7 +174,7 @@ export default function sketch(p: p5): void {
           }
         }
       } else {
-        p.stroke(`rgba(${0}, ${255}, ${0}, ${TRANSPARENCY})`);
+        p.stroke(`rgba(${120}, ${240}, ${100}, ${TRANSPARENCY})`);
       }
     }
   }
