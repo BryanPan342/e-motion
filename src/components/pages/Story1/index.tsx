@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import Scene1_fg from '../../../assets/scene1_neutral.png';
 import Scene2_fg from '../../../assets/scene2.png';
+import Scene4_fg from '../../../assets/scene4.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
@@ -21,7 +22,7 @@ function Story1(): JSX.Element {
           duration: 3000,
         },
       ],
-      image: Wireframe,
+      image: Scene4_fg,
     },
     {
       sketch: Scene1_bg,

@@ -166,15 +166,15 @@ export default function sketch(p: p5): void {
       /** drawing depending on bubble */
       const di = p.dist(p.mouseX, p.mouseY, this.pos.x, this.pos.y);
       if (di <= TRANSPARENCY_RADIUS) {
-        p.stroke(p.color(0, 255, 0));
+        p.stroke(p.color(77, 184, 165));
         if (this._bubble < BUBBLE_FREQUENCY) {
           if (p.random() < BUBBLE_FREQUENCY_ON_LINES) {
-            p.fill(0, 255, 0);
-            p.ellipse(this.pos.x, this.pos.y, 4);
+            p.fill(77, 184, 165);
+            p.ellipse(this.pos.x, this.pos.y, p.width*.006);
           }
         }
       } else {
-        p.stroke(`rgba(${120}, ${240}, ${100}, ${TRANSPARENCY})`);
+        p.stroke(`rgba(${41}, ${157}, ${116}, ${TRANSPARENCY})`);
       }
     }
   }

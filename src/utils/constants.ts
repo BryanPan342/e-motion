@@ -39,5 +39,5 @@ export const INC = 0.02;
 export const INC_START = 0.001;
 export const MAG_INC = 0.001;
 export const SCL = 10;
-export const NUM_PARTICLES = 100;
-export const STROKE_WEIGHT = 5;
+export const NUM_PARTICLES = window.innerWidth*.20;
+export const STROKE_WEIGHT = 7;
