@@ -22,7 +22,6 @@ export default function sketch(p: p5): void {
   const particles: Particle[] = [];
   let flowfield: p5.Vector[];
   let magOff = 0;
-  const showField = false;
 
   p.setup = () => {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
@@ -35,74 +34,56 @@ export default function sketch(p: p5): void {
     for (let i = 0; i < NUM_PARTICLES; i++) {
       particles[i] = new Particle();
     }
-
+    // particles = Array(NUM_PARTICLES).fill(0).map(() => {
+    //   return new Particle();
+    // });
     flowfield = new Array(rows * cols);
-
   };
 
   p.draw = () => {
-    if (showField) {
-      p.background(0);
-    } else {
-      p.background(p.color(0, 0, 0, 5));
-    }
+    p.background(p.color(0, 0, 0, 5));
     let yoff = start;
-    for (let y = 0; y < rows; y++) {
+    for (let y = 0; y < rows; y++ && (yoff += INC)) {
       let xoff = start;
-      for (let x = 0; x < cols; x++) {
-        const index = x + y * cols;
+      for (let x = 0; x < cols; x++ && (xoff += INC)) {
+        const index = findIndex(x,y);
         const angle = p.noise(xoff, yoff, zoff) * p.TWO_PI;
         const v = p5.Vector.fromAngle(angle); // vector from angle
         const m = p.map(p.noise(xoff, yoff, magOff), 0, 1, -5, 5);
         v.setMag(m);
-        if (showField) {
-          p.push();
-          p.stroke(255);
-          p.translate(x * SCL, y * SCL);
-          p.rotate(v.heading());
-          const endpoint = p.abs(m) * SCL;
-          p.line(0, 0, endpoint, 0);
-          if (m < 0) {
-            p.stroke('red');
-          } else {
-            p.stroke('green');
-          }
-          p.line(endpoint - 2, 0, endpoint, 0);
-          p.pop();
-        }
         flowfield[index] = v;
-        xoff += INC;
       }
-      yoff += INC;
     }
     magOff += MAG_INC;
     zoff += INC_START;
     start -= MAG_INC;
 
-    if (!showField) {
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].follow(flowfield);
-        particles[i].update();
-        particles[i].edges();
-        particles[i].show();
-      }
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].follow(flowfield);
+      particles[i].update();
+      particles[i].updatePrev();
+      particles[i].show();
+    }
 
-      if (p.random(10) > 5 && particles.length < 2500) {
-        const rnd = p.floor(p.noise(zoff) * 20);
-        for (let i = 0; i < rnd; i++) {
-          particles.push(new Particle());
-        }
-      } else if (particles.length > 2000) {
-        const rnd = p.floor(p.random(10));
-        for (let i = 0; i < rnd; i++) {
-          particles.shift();
-        }
+    if (p.random(10) > 5 && particles.length < 2500) {
+      const rnd = p.floor(p.noise(zoff) * 20);
+      for (let i = 0; i < rnd; i++) {
+        particles.push(new Particle());
+      }
+    } else if (particles.length > 2000) {
+      const rnd = p.floor(p.random(10));
+      for (let i = 0; i < rnd; i++) {
+        particles.shift();
       }
     }
   };
 
   p.windowResized = () => {
-    p.resizeCanvas(window.innerWidth, window.innerHeight, false);
+    p.resizeCanvas(window.innerWidth, window.innerHeight, true);
+  };
+
+  const findIndex = (x: number, y: number) => {
+    return x + y * cols;
   };
 
   class Particle {
@@ -110,7 +91,7 @@ export default function sketch(p: p5): void {
     public vel: p5.Vector;
     private _acc: p5.Vector;
     private _maxSpeed: number;
-    public _prevPos: p5.Vector;
+    private _prevPos: p5.Vector;
     private _bubble: number;
 
     constructor() {
@@ -134,7 +115,6 @@ export default function sketch(p: p5): void {
       p.strokeWeight(STROKE_WEIGHT);
       p.line(this.pos.x, this.pos.y, this._prevPos.x, this._prevPos.y);
       this.updatePrev();
-      //point(this.pos.x, this.pos.y);
     }
 
     public updatePrev() {
@@ -142,14 +122,10 @@ export default function sketch(p: p5): void {
       this._prevPos.y = this.pos.y;
     }
 
-    public edges() {
-      this.updatePrev();
-    }
-
     public follow(vectors: p5.Vector[]) {
       const x = p.floor(this.pos.x / SCL);
       const y = p.floor(this.pos.y / SCL);
-      const index = x + y * cols;
+      const index = findIndex(x,y);
       this._acc.add(vectors[index]);
 
       /** drawing depending on bubble */

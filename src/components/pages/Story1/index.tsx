@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
-
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
 import Wireframe from '../../../assets/wireframe.png';
