@@ -6,14 +6,15 @@ import '../styles/Home.scss';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
+import { ASPECT_RATIO } from '../../utils';
 
 class Scene {
-  perspective: number;
-  container: HTMLCanvasElement;
-  scene: THREE.Scene;
-  renderer: THREE.WebGLRenderer;
-  camera!: THREE.PerspectiveCamera;
-  controls!: OrbitControls;
+  public readonly perspective: number;
+  public readonly container: HTMLCanvasElement;
+  public readonly scene: THREE.Scene;
+  public readonly renderer: THREE.WebGLRenderer;
+  public readonly camera!: THREE.PerspectiveCamera;
+  public readonly controls!: OrbitControls;
 
   constructor() {
     this.perspective = 800;
@@ -54,7 +55,7 @@ class Scene {
   }
 
   private resize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = ASPECT_RATIO();
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
@@ -87,7 +88,7 @@ class Scene {
 
     this.camera = new THREE.PerspectiveCamera(
       fov,
-      window.innerWidth / window.innerHeight,
+      ASPECT_RATIO(),
       1,
       2000,
     );
