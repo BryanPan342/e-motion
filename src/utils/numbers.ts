@@ -1,8 +1,8 @@
 import { Point } from './types';
 
-export const rand = (min: number, max: number) => Math.random() * (max - min) + min;
+export const rand = (min: number, max: number): number => Math.random() * (max - min) + min;
 
-export const inEllipse = (x: number, y: number, x_axis: number, y_axis: number) =>
+export const inEllipse = (x: number, y: number, x_axis: number, y_axis: number): boolean =>
   ((x**2 / x_axis**2) + (y**2 / y_axis**2)) <= 1;
 
 export const randInEllipse = (x_axis: number, y_axis: number): Point => {

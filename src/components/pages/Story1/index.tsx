@@ -1,13 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import Scene1_fg from '../../../assets/scene1_neutral.png';
+
+import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
+
 import Scene4_fg from '../../../assets/scene4.png';
+import Scene5_fg from '../../../assets/scene5.png';
 import Wireframe from '../../../assets/wireframe.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene4_bg from '../../sketches/Scene4';
+import Scene5_bg from '../../sketches/Scene5_happy';
 import test2 from '../../sketches/test2';
 
 function Story1(): JSX.Element {
@@ -79,6 +83,7 @@ function Story1(): JSX.Element {
       image: Wireframe,
     },
     {
+
       sketch: Scene4_bg,
       expo: [
         {
@@ -87,6 +92,38 @@ function Story1(): JSX.Element {
         },
       ],
       image: Wireframe,
+      sketch: Scene5_bg,
+      expo: [
+        {
+          text: 'After school Brian and I would watch a lot of TV together. ',
+          duration: 3000,
+        },
+        {
+          text: 'It was a safe space for me.',
+          duration: 3000,
+        },
+        {
+          text: 'He was the one person that I never had to ask to turn on subtitles. ',
+          duration: 3000,
+        },
+        {
+          text: 'There was no obligation to socialize, or interact, or anything else I struggled with.',
+          duration: 3000,
+        },
+        {
+          text: 'We’d just sit there. And be together. ',
+          duration: 3000,
+        },
+        {
+          text: 'Maybe it didn’t mean much to him, because he had so many friends. But it meant a lot to me [joy].',
+          duration: 3000,
+        },
+        {
+          text: 'Both of us are grown now. We’ve matured a lot. And we understand each other better. ',
+          duration: 3000,
+        },
+      ],
+      image: Scene5_fg,
     },
   ];
 
