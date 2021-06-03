@@ -1,3 +1,6 @@
+// THREE
+export const ASPECT_RATIO = (): number => window.innerWidth / window.innerHeight;
+
 export const EASING = 0.05;
 
 // SCENE 2 CONSTANTS
