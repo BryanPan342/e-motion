@@ -8,7 +8,7 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { ASPECT_RATIO } from '../../utils';
 
-class Scene {
+class MugScene {
   public readonly perspective: number;
   public readonly container: HTMLCanvasElement;
   public readonly scene: THREE.Scene;
@@ -30,7 +30,8 @@ class Scene {
     this.renderer.setPixelRatio(window.devicePixelRatio);
 
     this.initLights();
-    this.initCamera();
+    this.camera = new THREE.PerspectiveCamera(50, ASPECT_RATIO(), 1, 2000);
+    this.camera.position.set(0, 400, this.perspective);
 
     this.controls = new OrbitControls(this.camera, this.container);
 
@@ -83,18 +84,6 @@ class Scene {
     this.scene.add(light4);
   }
 
-  private initCamera(): void {
-    const fov = 50;
-
-    this.camera = new THREE.PerspectiveCamera(
-      fov,
-      ASPECT_RATIO(),
-      1,
-      2000,
-    );
-    this.camera.position.set(0, 400, this.perspective);
-  }
-
   public update(): void {
     if (this.renderer === undefined) return;
     requestAnimationFrame(this.update.bind(this));
@@ -104,10 +93,10 @@ class Scene {
 }
 
 function Home(): JSX.Element {
-  const scene = useRef<Scene | null>(null);
+  const scene = useRef<MugScene | null>(null);
 
   useEffect(() => {
-    scene.current = new Scene();
+    scene.current = new MugScene();
   }, []);
 
   return (
