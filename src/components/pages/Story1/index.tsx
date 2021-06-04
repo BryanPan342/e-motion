@@ -146,7 +146,7 @@ function Story1(): JSX.Element {
           duration: 3000,
         },
         {
-          text: 'Maybe it didn’t mean much to him, because he had so many friends. But it meant a lot to me [joy].',
+          text: 'Maybe it didn’t mean much to him, because he had so many friends. But it meant a lot to me.',
           duration: 3000,
         },
         {
