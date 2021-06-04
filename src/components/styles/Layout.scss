@@ -18,10 +18,10 @@
 
 .foreground-image {
   display: block;
-  margin:auto;
   z-index: 2;
   width: 100%;
   height: auto;
+  bottom: $text-wrapper-height;
   opacity: 0;
   cursor: none;
 }
@@ -109,4 +109,8 @@
     bottom: 12.5px;
     right: 12.5px;
   }  
+
+  .foreground-image {
+    bottom: $text-wrapper-height-mobile;
+  }
 }
