@@ -55,6 +55,7 @@ export const ACCEL = 0.3;
 export const PARTICLES_MAX = 150;
 
 export const BALL_RADIUS = (): number => window.innerWidth / 100;
+export const CURSOR_RADIUS = (): number => Math.floor(window.innerWidth / 50);
 
 export const BOUNDARY_RADIUS = (): number => window.innerWidth * 0.32;
 export const BOUNDARY_X = (): number => window.innerWidth * 0.4;

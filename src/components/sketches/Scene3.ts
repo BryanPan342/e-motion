@@ -5,9 +5,10 @@ import {
   ACCEL,
   PARTICLES_MAX,
   BOUNDARY_RADIUS,
-  BALL_RADIUS,
   BOUNDARY_X,
   BOUNDARY_Y,
+  BALL_RADIUS,
+  CURSOR_RADIUS,
 } from '../../utils/constants';
 
 export default function sketch(p: p5): void {
@@ -39,7 +40,7 @@ export default function sketch(p: p5): void {
     p.background(0, 0, 0, 50);
     p.fill(HOT_PINK);
 
-    p.ellipse(p.mouseX, p.mouseY, BALL_RADIUS()*2, BALL_RADIUS()*2);
+    p.ellipse(p.mouseX, p.mouseY, CURSOR_RADIUS(), CURSOR_RADIUS());
     p.fill(PINK);
     p.ellipse(BOUNDARY_X(), BOUNDARY_Y(), BOUNDARY_RADIUS());
 

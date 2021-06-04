@@ -9,6 +9,7 @@ import {
   LIFESPAN_DECREMENT,
   VELOCITY_CHANGE,
   TRAIL_SIZE,
+  CURSOR_RADIUS,
 } from '../../utils/constants';
 
 export default function sketch(p: p5): void {
@@ -21,8 +22,6 @@ export default function sketch(p: p5): void {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
     canvas.id('p5-background');
     gravity = p.createVector(0, 0.095);
-    p.stroke(255);
-    p.strokeWeight(4);
     p.background(0);
 
     /** Setting mode to degrees for spawning ringParticles in circle */
@@ -31,6 +30,7 @@ export default function sketch(p: p5): void {
     p.translate(p.width / 2, p.height / 2);
     /** Max number of ringParticles */
     p.frameRate(30);
+    p.fill(251, 169, 100);
   };
 
   p.windowResized = () => {
@@ -40,8 +40,8 @@ export default function sketch(p: p5): void {
   p.draw = () => {
     /** easy trails but rings trail */
     p.background(0, 0, 0, 25);
-
-    p.ellipse(p.mouseX, p.mouseY, 5, 5);
+    p.fill(251, 169, 100);
+    p.ellipse(p.mouseX, p.mouseY, CURSOR_RADIUS(), CURSOR_RADIUS());
     if (p.random(1) < 0.03) {
       fireworks.push(new Firework());
     }
@@ -96,7 +96,7 @@ export default function sketch(p: p5): void {
       if (!this.exploded) {
         this._firingParticle.update(gravity);
 
-        if (this._firingParticle._vel.y >= 0) {
+        if (this._firingParticle.vel.y >= 0) {
           this.explode();
         }
       }
@@ -136,28 +136,28 @@ export default function sketch(p: p5): void {
 
   class Particle {
     public pos: p5.Vector;
+    public vel: p5.Vector;
     public isFirework: boolean;
     private _lifespan: number;
     private rand: number;
-    private _vel: p5.Vector;
 
     constructor(x: number, y: number, isFirework: boolean) {
       this.pos = p.createVector(x, y);
       this.isFirework = isFirework;
       this._lifespan = FIREWORK_LIFESPAN;
       this.rand = p.random(0, 3);
-      this._vel = this.isFirework
+      this.vel = this.isFirework
         ? p.createVector(0, p.random(-12, -8))
         : p5.Vector.random2D().mult(p.random(2, 10));
     }
 
     public update(force: p5.Vector) {
       if (!this.isFirework) {
-        this._vel.mult(0.9);
+        this.vel.mult(0.9);
         this._lifespan -= 4;
       }
-      this._vel.add(force);
-      this.pos.add(this._vel);
+      this.vel.add(force);
+      this.pos.add(this.vel);
     }
 
     public done() {
@@ -167,14 +167,14 @@ export default function sketch(p: p5): void {
     public show() {
       if (!this.isFirework) {
         /** after explosion */
-        p.strokeWeight(6);
-        p.stroke(255, 211, 97, this._lifespan);
-      } else {
         p.strokeWeight(8);
+        p.stroke(255, 192, 97, this._lifespan);
+      } else {
+        p.strokeWeight(10);
       }
 
       const opacity = this.rand < 1 ? 0.2 : this.rand < 2 ? 0.4 : 0.6;
-      p.stroke(`rgba(255,211,97,${opacity})`);
+      p.stroke(`rgba(255,192,97,${opacity})`);
       p.point(this.pos.x, this.pos.y);
     }
   }
@@ -245,13 +245,13 @@ export default function sketch(p: p5): void {
     public show() {
       if (!this._explode) {
         p.noStroke();
-        p.fill(255, 211, 97, 204);
+        p.fill(251, 169, 100, 204);
 
         /** Draw point */
         p.ellipse(this.pos.x, this.pos.y, this._radius);
       } else {
-        p.strokeWeight(4);
-        p.stroke(255, 211, 97, (this._lifespan * 3) / 5);
+        p.strokeWeight(6);
+        p.stroke(251, 169, 100, (this._lifespan * 3) / 5);
 
         this._history.map(pos => p.point(pos.x, pos.y));
       }
