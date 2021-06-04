@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import Layout, { SceneProps } from '../../shared/Layout';
 
 // Audio Files
 import Scene1_audio from '../../../assets/audio/S1.mp3';
@@ -14,7 +15,6 @@ import Scene2_fg from '../../../assets/scene2.png';
 import Scene3_fg from '../../../assets/scene3.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
-import Layout, { SceneProps } from '../../shared/Layout';
 
 // Background Images
 import Scene1_bg from '../../sketches/Scene1';
