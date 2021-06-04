@@ -4,11 +4,13 @@ import { useHistory } from 'react-router';
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
 import Scene3_fg from '../../../assets/scene3.png';
+import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene3_bg from '../../sketches/Scene3';
+import Scene4_bg from '../../sketches/Scene4';
 import Scene5_bg from '../../sketches/Scene5_happy';
 
 function Story1(): JSX.Element {
@@ -85,6 +87,40 @@ function Story1(): JSX.Element {
         margin: '0px 0px 5px 10%',
         border: '0px solid white',
       },
+    },
+    {
+      sketch: Scene4_bg,
+      expo: [
+        {
+          text: 'The majority of my social interaction came from my older brother Brian.',
+          duration: 3000,
+        },
+        {
+          text: 'It was just a typical sibling relationship.',
+          duration: 3000,
+        },
+        {
+          text: 'We annoyed each other, and got in fights.',
+          duration: 3000,
+        },
+        {
+          text: 'I envied how easily he made friends at school.',
+          duration: 3000,
+        },
+        {
+          text: 'But he always made a point of saying ‘hi’ to me in the hallway.',
+          duration: 3000,
+        },
+        {
+          text: 'He’d even scream it sometimes.',
+          duration: 3000,
+        },
+        {
+          text: 'And that meant so much to me. Because people could see, that even if I didn’t mean much to them, I was important to somebody.',
+          duration: 3000,
+        },
+      ],
+      image: Scene4_fg,
     },
     {
       sketch: Scene5_bg,

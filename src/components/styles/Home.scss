@@ -1,5 +1,32 @@
 @import 'variables';
 
 #home-container {
-  padding: 64px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.01%, #F4F4F4 54.17%, #F3F3F3 60.42%, #F1F1F1 67.19%, #FFFFFF 70.31%, #EAEAEA 100%);
+  height: 100vh;
+  width: 100vw;
+}
+
+#stage {
+  width: 100vw;
+  height: 100vh;
+}
+
+#start-button {
+  position: absolute;
+  left: 50vw;
+  top: 85vh;
+  transform: translate(-50%,-50%);
+  padding: 10px 50px;
+  border: 2px solid black;
+  letter-spacing: .2rem;
+  font-weight: bold;
+
+  // Hover changes
+  color: black;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 }
