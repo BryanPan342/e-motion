@@ -19,7 +19,7 @@ export default function sketch(p: p5): void {
   let cols: number;
   let rows: number;
   let zoff = 0;
-  const particles: Particle[] = [];
+  let particles: Particle[] = [];
   let flowfield: p5.Vector[];
   let magOff = 0;
 
@@ -31,12 +31,10 @@ export default function sketch(p: p5): void {
     rows = p.floor(window.innerHeight / SCL);
     p.background(0);
 
-    for (let i = 0; i < NUM_PARTICLES; i++) {
-      particles[i] = new Particle();
-    }
-    // particles = Array(NUM_PARTICLES).fill(0).map(() => {
-    //   return new Particle();
-    // });
+    particles = Array(Math.floor(NUM_PARTICLES)).fill(0).map(() => {
+      return new Particle();
+    });
+
     flowfield = new Array(rows * cols);
   };
 
@@ -130,7 +128,7 @@ export default function sketch(p: p5): void {
 
       /** drawing depending on bubble */
       const di = p.dist(p.mouseX, p.mouseY, this.pos.x, this.pos.y);
-      p.stroke(di <= TRANSPARENCY_RADIUS? p.color(77, 184, 165) : p.color(41, 157,116, TRANSPARENCY));
+      p.stroke(di <= TRANSPARENCY_RADIUS? p.color(77, 184, 165) : p.color(41, 157,116, TRANSPARENCY*255));
       if (
         di <= TRANSPARENCY_RADIUS &&
 							this._bubble < BUBBLE_FREQUENCY &&
