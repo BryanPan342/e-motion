@@ -1,28 +1,27 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-
-// Foreground Images
+// Audio Files
 import Scene1_audio from '../../../assets/audio/S1.mp3';
 import Scene2_audio from '../../../assets/audio/S2.mp3';
 import Scene3_audio from '../../../assets/audio/S3.mp3';
 import Scene4_audio from '../../../assets/audio/S4.mp3';
 import Scene5_audio from '../../../assets/audio/S5.mp3';
+
+// Foreground Images
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
 import Scene3_fg from '../../../assets/scene3.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
-
-// Audio Files
 import Layout, { SceneProps } from '../../shared/Layout';
 
-// Background Scenes
-import Scene1_bg from '../../sketches/Scene1_neutral';
+// Background Images
+import Scene1_bg from '../../sketches/Scene1';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene3_bg from '../../sketches/Scene3';
 import Scene4_bg from '../../sketches/Scene4';
-import Scene5_bg from '../../sketches/Scene5_happy';
+import Scene5_bg from '../../sketches/Scene5';
 
 function Story1(): JSX.Element {
   const history = useHistory();
@@ -46,6 +45,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene1_fg,
+      style: {
+        width: '80%',
+      },
     },
     {
       sketch: Scene2_bg,
@@ -77,6 +79,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene2_fg,
+      style: {
+        width: '80%',
+      },
     },
     {
       sketch: Scene3_bg,
@@ -99,7 +104,6 @@ function Story1(): JSX.Element {
       style: {
         width: '60%',
         margin: '0px 0px 5px 10%',
-        border: '0px solid white',
       },
     },
     {
@@ -136,6 +140,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene4_fg,
+      style: {
+        width: '80%',
+      },
     },
     {
       sketch: Scene5_bg,
@@ -171,6 +178,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene5_fg,
+      style: {
+        width: '80%',
+      },
     },
   ];
 
