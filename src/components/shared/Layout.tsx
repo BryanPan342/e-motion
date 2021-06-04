@@ -15,6 +15,7 @@ export interface SceneProps {
   expo: Exposition[];
   image: string;
   imageAlt?: string;
+  style?: React.CSSProperties;
 }
 
 export interface LayoutProps {
@@ -91,7 +92,7 @@ function Layout(props: LayoutProps): JSX.Element {
   return (
     <div id={'layout'}>
       <P5Scene sketch={scene.sketch}/>
-      <img src={scene.image} alt={scene.imageAlt} className={'foreground-image'}/>
+      <img src={scene.image} alt={scene.imageAlt} className={'foreground-image'} style={scene.style}/>
       <div className={'text-wrapper'}>
         {scene.expo.map(({text}, i) =>
           <div key={`${sceneIdx}-${i}`}id={`expo-${i}`}>{text}</div>,

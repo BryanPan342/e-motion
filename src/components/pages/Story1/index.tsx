@@ -3,11 +3,13 @@ import { useHistory } from 'react-router';
 
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
+import Scene3_fg from '../../../assets/scene3.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
 import Layout, { SceneProps } from '../../shared/Layout';
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
+import Scene3_bg from '../../sketches/Scene3';
 import Scene4_bg from '../../sketches/Scene4';
 import Scene5_bg from '../../sketches/Scene5_happy';
 
@@ -19,7 +21,7 @@ function Story1(): JSX.Element {
       sketch: Scene1_bg,
       expo: [
         {
-          text: 'My parents didn’t know much about deafness. They were young. ',
+          text: 'My parents didn’t know much about deafness. They were young.',
           duration: 3000,
         },
         {
@@ -62,6 +64,29 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene2_fg,
+    },
+    {
+      sketch: Scene3_bg,
+      expo: [
+        {
+          text: 'Eventually I just stopped trying to engage, which came with its own set of problems.',
+          duration: 3000,
+        },
+        {
+          text: 'I developed a reputation as someone who never spoke.',
+          duration: 3000,
+        },
+        {
+          text: 'I got bullied quite a bit.',
+          duration: 3000,
+        },
+      ],
+      image: Scene3_fg,
+      style: {
+        width: '60%',
+        margin: '0px 0px 5px 10%',
+        border: '0px solid white',
+      },
     },
     {
       sketch: Scene4_bg,
@@ -121,7 +146,7 @@ function Story1(): JSX.Element {
           duration: 3000,
         },
         {
-          text: 'Maybe it didn’t mean much to him, because he had so many friends. But it meant a lot to me [joy].',
+          text: 'Maybe it didn’t mean much to him, because he had so many friends. But it meant a lot to me.',
           duration: 3000,
         },
         {
