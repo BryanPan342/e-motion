@@ -1,12 +1,23 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
+import Layout, { SceneProps } from '../../shared/Layout';
+
+// Foreground Images
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
 import Scene3_fg from '../../../assets/scene3.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
-import Layout, { SceneProps } from '../../shared/Layout';
+
+// Audio Files
+import Scene1_audio from '../../../assets/audio/S1.mp3';
+import Scene2_audio from '../../../assets/audio/S2.mp3';
+import Scene3_audio from '../../../assets/audio/S3.mp3';
+import Scene4_audio from '../../../assets/audio/S4.mp3';
+import Scene5_audio from '../../../assets/audio/S5.mp3';
+
+// Background Scenes
 import Scene1_bg from '../../sketches/Scene1_neutral';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene3_bg from '../../sketches/Scene3';
@@ -19,6 +30,7 @@ function Story1(): JSX.Element {
   const content: SceneProps[] = [
     {
       sketch: Scene1_bg,
+      audio: Scene1_audio,
       expo: [
         {
           text: 'My parents didn’t know much about deafness. They were young.',
@@ -37,6 +49,7 @@ function Story1(): JSX.Element {
     },
     {
       sketch: Scene2_bg,
+      audio: Scene2_audio,
       expo: [
         {
           text: 'I didn’t get my first hearing aids until elementary school.',
@@ -67,6 +80,7 @@ function Story1(): JSX.Element {
     },
     {
       sketch: Scene3_bg,
+      audio: Scene3_audio,
       expo: [
         {
           text: 'Eventually I just stopped trying to engage, which came with its own set of problems.',
@@ -90,6 +104,7 @@ function Story1(): JSX.Element {
     },
     {
       sketch: Scene4_bg,
+      audio: Scene4_audio,
       expo: [
         {
           text: 'The majority of my social interaction came from my older brother Brian.',
@@ -124,6 +139,7 @@ function Story1(): JSX.Element {
     },
     {
       sketch: Scene5_bg,
+      audio: Scene5_audio,
       expo: [
         {
           text: 'After school Brian and I would watch a lot of TV together. ',

@@ -41,6 +41,40 @@ button {
   }
 }
 
+#container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.01%, #F4F4F4 54.17%, #F3F3F3 60.42%, #F1F1F1 67.19%, #FFFFFF 70.31%, #EAEAEA 100%);
+
+  h1 {
+    color: black;
+  }
+
+  button {
+    margin: 0 3rem;
+    margin-top: 1rem;
+    padding: 10px 50px;
+    border: 2px solid black;
+    letter-spacing: .2rem;
+    font-weight: bold;
+    
+  
+    // Hover changes
+    color: black;
+  
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
 @media screen and (max-height: 500px) {
   html {
     font-size: 12px;
