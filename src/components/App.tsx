@@ -5,9 +5,9 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Track from '../assets/audio/track.mp3';
 import Home from './pages/Home';
 import Story1 from './pages/Story1';
-import Track from '../assets/audio/track.mp3';
 
 function App(): JSX.Element {
   const [mute, setMute] = useState(true);
@@ -18,13 +18,13 @@ function App(): JSX.Element {
     const audio = new Audio(Track);
     audio.loop = true;
     audio.volume = .05;
-    audio.play();
+    void audio.play();
   }, [mute]);
 
   const next = (isMute: boolean) => {
     setConfirm(true);
     setMute(isMute);
-  }
+  };
 
   if (!confirm) {
     return (
@@ -37,7 +37,7 @@ function App(): JSX.Element {
           <button onClick={() => next(false)}>Yes</button>
         </div>
       </div>
-    )
+    );
   }
 
   return (

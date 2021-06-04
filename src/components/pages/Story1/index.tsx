@@ -1,9 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import Layout, { SceneProps } from '../../shared/Layout';
 
 // Foreground Images
+import Scene1_audio from '../../../assets/audio/S1.mp3';
+import Scene2_audio from '../../../assets/audio/S2.mp3';
+import Scene3_audio from '../../../assets/audio/S3.mp3';
+import Scene4_audio from '../../../assets/audio/S4.mp3';
+import Scene5_audio from '../../../assets/audio/S5.mp3';
 import Scene1_fg from '../../../assets/scene1.png';
 import Scene2_fg from '../../../assets/scene2.png';
 import Scene3_fg from '../../../assets/scene3.png';
@@ -11,11 +15,7 @@ import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
 
 // Audio Files
-import Scene1_audio from '../../../assets/audio/S1.mp3';
-import Scene2_audio from '../../../assets/audio/S2.mp3';
-import Scene3_audio from '../../../assets/audio/S3.mp3';
-import Scene4_audio from '../../../assets/audio/S4.mp3';
-import Scene5_audio from '../../../assets/audio/S5.mp3';
+import Layout, { SceneProps } from '../../shared/Layout';
 
 // Background Scenes
 import Scene1_bg from '../../sketches/Scene1_neutral';
