@@ -31,7 +31,7 @@ export default function sketch(p: p5): void {
     rows = p.floor(window.innerHeight / SCL);
     p.background(0);
 
-    particles = Array(Math.floor(NUM_PARTICLES)).fill(0).map(() => {
+    particles = Array(NUM_PARTICLES).fill(0).map(() => {
       return new Particle();
     });
 
