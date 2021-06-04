@@ -7,11 +7,11 @@ import Scene3_fg from '../../../assets/scene3.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
 import Layout, { SceneProps } from '../../shared/Layout';
-import Scene1_bg from '../../sketches/Scene1_neutral';
+import Scene1_bg from '../../sketches/Scene1';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene3_bg from '../../sketches/Scene3';
 import Scene4_bg from '../../sketches/Scene4';
-import Scene5_bg from '../../sketches/Scene5_happy';
+import Scene5_bg from '../../sketches/Scene5';
 
 function Story1(): JSX.Element {
   const history = useHistory();
@@ -34,6 +34,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene1_fg,
+      style: {
+        width: '80%',
+      },
     },
     {
       sketch: Scene2_bg,
@@ -64,6 +67,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene2_fg,
+      style: {
+        width: '80%',
+      },
     },
     {
       sketch: Scene3_bg,
@@ -85,7 +91,6 @@ function Story1(): JSX.Element {
       style: {
         width: '60%',
         margin: '0px 0px 5px 10%',
-        border: '0px solid white',
       },
     },
     {
@@ -121,6 +126,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene4_fg,
+      style: {
+        width: '80%',
+      },
     },
     {
       sketch: Scene5_bg,
@@ -155,6 +163,9 @@ function Story1(): JSX.Element {
         },
       ],
       image: Scene5_fg,
+      style: {
+        width: '80%',
+      },
     },
   ];
 

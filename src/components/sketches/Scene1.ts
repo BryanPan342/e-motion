@@ -1,4 +1,5 @@
 import p5 from 'p5';
+import { CURSOR_RADIUS } from '../../utils';
 export default function sketch(p: p5): void {
   let canvas: p5.Renderer;
 
@@ -24,7 +25,7 @@ export default function sketch(p: p5): void {
     p.background(20);
     p.fill(255, 255, 255, 255);
 
-    p.circle(p.mouseX, p.mouseY, 25);
+    p.circle(p.mouseX, p.mouseY, CURSOR_RADIUS());
 
     particles.forEach((particle, idx) => {
       particle.update();

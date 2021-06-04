@@ -7,6 +7,7 @@ import {
   CLOUD_SECTION_OFFSETS,
   CLOUD_WIDTH_MAX,
   CLOUD_WIDTH_MIN,
+  CURSOR_RADIUS,
   NUM_CLOUD_SECTION_PARTICLES,
   NUM_RAIN,
   PARTICLE_DIAMETER,
@@ -43,11 +44,12 @@ export default function sketch(p: p5): void {
 
     p.noStroke();
     p.fill(255);
-    p.circle(p.mouseX, p.mouseY, 25);
+    p.circle(p.mouseX, p.mouseY, CURSOR_RADIUS());
   };
 
   p.windowResized = () => {
     p.resizeCanvas(window.innerWidth, window.innerHeight, true);
+    p.setup();
   };
 
   class Cloud {
@@ -86,7 +88,7 @@ export default function sketch(p: p5): void {
     draw() {
       const t_rain: RainPoint[] = [];
 
-      p.stroke('rgba(0, 175, 231, 0.20)');
+      p.stroke('rgba(80,166,239, 0.20)');
       p.strokeWeight(4);
 
       this._rain.forEach(({x, y, len, velocity}) => {
@@ -134,7 +136,7 @@ export default function sketch(p: p5): void {
     }
 
     public draw() {
-      p.fill('rgba(0, 175, 231, 0.20)');
+      p.fill('rgba(80,166,239, 0.20)');
       p.noStroke();
       this._particles.forEach(({x, y}) => {
         p.circle(this.x + x, this.y + y, PARTICLE_DIAMETER);

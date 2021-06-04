@@ -10,6 +10,7 @@ import {
   SCL,
   NUM_PARTICLES,
   STROKE_WEIGHT,
+  CURSOR_RADIUS,
 } from '../../utils/constants';
 
 export default function sketch(p: p5): void {
@@ -40,6 +41,7 @@ export default function sketch(p: p5): void {
 
   p.draw = () => {
     p.background(p.color(0, 0, 0, 5));
+
     let yoff = start;
     for (let y = 0; y < rows; y++ && (yoff += INC)) {
       let xoff = start;
@@ -74,6 +76,7 @@ export default function sketch(p: p5): void {
         particles.shift();
       }
     }
+    p.circle(p.mouseX, p.mouseY, CURSOR_RADIUS());
   };
 
   p.windowResized = () => {
