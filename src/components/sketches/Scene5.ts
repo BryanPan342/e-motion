@@ -22,7 +22,7 @@ export default function sketch(p: p5): void {
     canvas = p.createCanvas(window.innerWidth, window.innerHeight);
     canvas.id('p5-background');
     gravity = p.createVector(0, 0.095);
-    p.background(0);
+    p.background('rgba(63, 27, 48, 1)');
 
     /** Setting mode to degrees for spawning ringParticles in circle */
     p.angleMode(p.DEGREES);
