@@ -56,3 +56,4 @@ export const EXPLODE_OFFSET = 15; // after a random number is generated from 1-E
 export const FIREWORK_LIFESPAN = 255;
 export const LIFESPAN_DECREMENT = 5;
 export const VELOCITY_CHANGE = 0.95;
+export const TRAIL_SIZE = 10;
