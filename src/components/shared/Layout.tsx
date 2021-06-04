@@ -15,7 +15,7 @@ export interface SceneProps {
   expo: Exposition[];
   image: string;
   imageAlt?: string;
-  style?: React.CSS.Properties;
+  style?: React.CSSProperties;
 }
 
 export interface LayoutProps {

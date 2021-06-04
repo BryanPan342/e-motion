@@ -35,6 +35,12 @@ export const INIT_PARTICLES_COUNT = 100;
 export const ACCEL = 0.3;
 export const PARTICLES_MAX = 150;
 
+export const BALL_RADIUS = (): number => window.innerWidth / 100;
+
+export const BOUNDARY_RADIUS = (): number => window.innerWidth * 0.32;
+export const BOUNDARY_X = (): number => window.innerWidth * 0.4;
+export const BOUNDARY_Y = (): number => window.innerHeight * 0.7;
+
 // SCENE 5 CONSTANTS
 export const MAX_RING_PARTICLES = 2880 + 1440;
 export const RING_RADIUS = 13;

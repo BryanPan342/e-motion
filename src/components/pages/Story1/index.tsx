@@ -16,7 +16,7 @@ function Story1(): JSX.Element {
 
   const content: SceneProps[] = [
     {
-      sketch: Scene1_bg,
+      sketch: Scene3_bg,
       expo: [
         {
           text: 'My parents didn’t know much about deafness. They were young.',
