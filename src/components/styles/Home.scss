@@ -30,3 +30,13 @@
     color: white;
   }
 }
+#creds {
+  position: absolute;
+  left: 50vw;
+  top: 10vh;
+  transform: translate(-50%,-50%);
+  padding: 10px 50px;
+  letter-spacing: .2rem;
+  font-weight: bold;
+  color: black;
+}

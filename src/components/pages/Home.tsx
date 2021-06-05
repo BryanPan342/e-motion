@@ -101,12 +101,11 @@ function Home(): JSX.Element {
 
   return (
     <div id={'home-container'}>
-      <canvas id={'stage'}/>
-      <Link to='/story1'>
-        <div id={'start-button'}>
-          START
-        </div>
+      <canvas id={'stage'} />
+      <Link to="/story1">
+        <div id={'start-button'}>START</div>
       </Link>
+      <p id='creds'>Story by Humans of New York, Music by Dennis Kuo</p>
     </div>
   );
 }
