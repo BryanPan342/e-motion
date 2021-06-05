@@ -16,7 +16,6 @@ import Scene3_fg from '../../../assets/scene3.png';
 import Scene4_fg from '../../../assets/scene4.png';
 import Scene5_fg from '../../../assets/scene5.png';
 
-// Background Images
 import Scene1_bg from '../../sketches/Scene1';
 import Scene2_bg from '../../sketches/Scene2';
 import Scene3_bg from '../../sketches/Scene3';

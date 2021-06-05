@@ -1,0 +1,87 @@
+// @font-face { font-family: 'ProximaNova-Regular'; src: '../../assets/assets-3d/ProximaNova-Regular.otf'; } 
+.modal {
+	// display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 15; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	// font-family: 'ProximaNova-Regular';
+}
+.modal-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin:auto;
+	margin-top: 5%;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-content div {
+	width: 40%;
+	font-size: 33px;
+	margin: 5px;
+	padding: 0px;
+	text-align: left;
+	// font-family: 'ProximaNova-Regular';
+}
+#returnBack {
+	// border: 1px solid white;
+	min-width: 50px;
+	max-width: 100px;
+	color: white;
+	position: fixed;
+	top: 37.5px;
+	left: 37.5px;
+	z-index: 10;
+}
+#topbar {
+	margin-top: 2.5%;
+	text-align: center;
+	font-size: 30px;
+	opacity: 15%;
+}
+#title {
+	font-family: "Baskerville", sans-serif;
+	font-size: 72px;
+	font-weight: bold;
+	margin-top: auto;
+	margin-bottom: 3%;
+}
+.dot1 {
+  height: 5px;
+  width: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot2 {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot3 {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot4 {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot5 {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
