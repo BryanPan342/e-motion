@@ -21,31 +21,34 @@
   z-index: 2;
   width: 100%;
   height: auto;
+  margin: 0 auto;
   bottom: $text-wrapper-height;
   opacity: 0;
   cursor: none;
 }
 
 .text-wrapper {
-	position: absolute;
-	z-index: 3;
-	text-align: center;
-	background-color: map-get($colors, "black");
-	width: 100%;
-	height: $text-wrapper-height;
+  position: absolute;
+  z-index: 3;
+  text-align: center;
+  background-color: map-get($colors, 'black');
+  opacity: .7;
+  width: 100%;
+  height: $text-wrapper-height;
 
-	div {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		position: absolute;
-		opacity: 0;
-		top: 0;
-		width: inherit;
-		height: inherit;
-	}
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    width: inherit;
+    height: inherit;
+  }
 }
+
 #menuBtn {
 	position: fixed;
 	z-index: 9;
