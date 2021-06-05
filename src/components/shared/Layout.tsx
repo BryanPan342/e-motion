@@ -69,7 +69,7 @@ function Layout(props: LayoutProps): JSX.Element {
   useEffect(() => {
     audioRef.current = new Audio(scene.audio);
     audioRef.current.volume = .15;
-    audioRef.current.play();
+    void audioRef.current.play();
     setTimeout(() => {
       animateLeft('.foreground-image');
     }, 5000);
