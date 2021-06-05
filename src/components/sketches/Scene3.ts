@@ -37,7 +37,7 @@ export default function sketch(p: p5): void {
 
   p.draw = () => {
     // Reset background
-    p.background(0);
+    p.background(0, 0, 0, 50);
     p.fill(HOT_PINK);
 
     p.ellipse(p.mouseX, p.mouseY, CURSOR_RADIUS(), CURSOR_RADIUS());

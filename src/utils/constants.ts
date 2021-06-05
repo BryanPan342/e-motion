@@ -50,7 +50,7 @@ export const STROKE_WEIGHT = 7;
 // SCENE 3 CONSTANTS
 export const INIT_SPEED = 7;
 export const INIT_PARTICLES_COUNT = 100;
-export const ACCEL = 0.3;
+export const ACCEL = 0.4;
 export const PARTICLES_MAX = 150;
 
 export const BALL_RADIUS = (): number => window.innerWidth / 100;

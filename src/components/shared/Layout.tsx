@@ -119,7 +119,7 @@ function Layout(props: LayoutProps): JSX.Element {
 
           <p id="title">chapter list</p>
           <div>
-            <span id="dot1"></span>
+            {sceneIdx === 0 && <span id="dot1"></span>}
             <p
               onClick={() => {
                 setSceneIdx(0);
@@ -130,7 +130,7 @@ function Layout(props: LayoutProps): JSX.Element {
             </p>
           </div>
           <div>
-            <span id="dot2"></span>
+            {sceneIdx === 1 && <span id="dot2"></span>}
             <p
               onClick={() => {
                 setSceneIdx(1);
@@ -141,7 +141,7 @@ function Layout(props: LayoutProps): JSX.Element {
             </p>
           </div>
           <div>
-            <span id="dot3"></span>
+            {sceneIdx === 2 && <span id="dot3"></span>}
             <p
               onClick={() => {
                 setSceneIdx(2);
@@ -152,7 +152,7 @@ function Layout(props: LayoutProps): JSX.Element {
             </p>
           </div>
           <div>
-            <span id="dot4"></span>
+            {sceneIdx === 3 && <span id="dot4"></span>}
             <p
               onClick={() => {
                 setSceneIdx(3);
@@ -163,7 +163,7 @@ function Layout(props: LayoutProps): JSX.Element {
             </p>
           </div>
           <div>
-            <span id="dot5"></span>
+            {sceneIdx === 4 && <span id="dot5"></span>}
             <p
               onClick={() => {
                 setSceneIdx(4);
@@ -185,12 +185,6 @@ function Layout(props: LayoutProps): JSX.Element {
       </button>
       {isMenu && <ChapterList />}
       <P5Scene sketch={scene.sketch} />
-      <img
-        src={scene.image}
-        alt={scene.imageAlt}
-        className={'foreground-image'}
-        style={scene.style}
-      />
       <img
         draggable={false}
         src={scene.image}
