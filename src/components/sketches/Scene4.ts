@@ -10,7 +10,6 @@ import {
   SCL,
   NUM_PARTICLES,
   STROKE_WEIGHT,
-  CURSOR_RADIUS,
 } from '../../utils/constants';
 
 export default function sketch(p: p5): void {
