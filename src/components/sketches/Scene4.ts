@@ -40,7 +40,7 @@ export default function sketch(p: p5): void {
   };
 
   p.draw = () => {
-    p.background(p.color(0, 0, 0, 5));
+    p.background(0);
 
     let yoff = start;
     for (let y = 0; y < rows; y++ && (yoff += INC)) {

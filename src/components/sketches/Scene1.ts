@@ -22,8 +22,8 @@ export default function sketch(p: p5): void {
   };
 
   p.draw = () => {
-    p.background(20);
-    p.fill(255, 255, 255, 255);
+    p.background('#1D1D2E');
+    p.fill(140, 114, 204, 200);
 
     p.circle(p.mouseX, p.mouseY, CURSOR_RADIUS());
 
@@ -69,7 +69,7 @@ export default function sketch(p: p5): void {
     }
     draw(moreOpaque: boolean) {
       p.noStroke();
-      p.fill(`rgba(255, 255, 255, ${moreOpaque ? 0.25 : 0.5})`);
+      p.fill(`rgba(140, 114, 204, ${moreOpaque ? 0.25 : 0.5})`);
       this.repel();
     }
 
@@ -99,7 +99,7 @@ export default function sketch(p: p5): void {
 
         if (di2 > repelRadius) {
           const alpha = p.map(d, 0, 120, 0, 0.25);
-          p.stroke(`rgba(255, 255, 255, ${alpha})`);
+          p.stroke(`rgba(140, 114, 204, ${alpha})`);
           p.line(this.pos.x, this.pos.y, particle.pos.x, particle.pos.y);
         }
       });
