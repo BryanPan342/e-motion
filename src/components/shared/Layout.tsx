@@ -68,7 +68,7 @@ function Layout(props: LayoutProps): JSX.Element {
 
   useEffect(() => {
     audioRef.current = new Audio(scene.audio);
-    audioRef.current.volume = .15;
+    audioRef.current.volume = 0.15;
     void audioRef.current.play();
     setTimeout(() => {
       animateLeft('.foreground-image');
@@ -118,46 +118,61 @@ function Layout(props: LayoutProps): JSX.Element {
           <img src={coffeeCupImg} />
 
           <p id="title">chapter list</p>
-          <p
-            onClick={() => {
-              setSceneIdx(0);
-              setIsMenu(false);
-            }}
-          >
-						ch. 1 intro
-          </p>
-          <p
-            onClick={() => {
-              setSceneIdx(1);
-              setIsMenu(false);
-            }}
-          >
-						ch. 2 first hearing aids
-          </p>
-          <p
-            onClick={() => {
-              setSceneIdx(2);
-              setIsMenu(false);
-            }}
-          >
-						ch. 3 sadness
-          </p>
-          <p
-            onClick={() => {
-              setSceneIdx(3);
-              setIsMenu(false);
-            }}
-          >
-						ch. 4 support from family
-          </p>
-          <p
-            onClick={() => {
-              setSceneIdx(4);
-              setIsMenu(false);
-            }}
-          >
-						ch. 5 end
-          </p>
+          <div>
+            <span id="dot1"></span>
+            <p
+              onClick={() => {
+                setSceneIdx(0);
+                setIsMenu(false);
+              }}
+            >
+							ch. 1 intro
+            </p>
+          </div>
+          <div>
+            <span id="dot2"></span>
+            <p
+              onClick={() => {
+                setSceneIdx(1);
+                setIsMenu(false);
+              }}
+            >
+							ch. 2 first hearing aids
+            </p>
+          </div>
+          <div>
+            <span id="dot3"></span>
+            <p
+              onClick={() => {
+                setSceneIdx(2);
+                setIsMenu(false);
+              }}
+            >
+							ch. 3 sadness
+            </p>
+          </div>
+          <div>
+            <span id="dot4"></span>
+            <p
+              onClick={() => {
+                setSceneIdx(3);
+                setIsMenu(false);
+              }}
+            >
+							ch. 4 support from family
+            </p>
+          </div>
+          <div>
+            <span id="dot5"></span>
+            <p
+              onClick={() => {
+                setSceneIdx(4);
+                setIsMenu(false);
+              }}
+            >
+							ch. 5 end
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -176,7 +191,13 @@ function Layout(props: LayoutProps): JSX.Element {
         className={'foreground-image'}
         style={scene.style}
       />
-      <img draggable={false} src={scene.image} alt={scene.imageAlt} className={'foreground-image'} style={scene.style}/>
+      <img
+        draggable={false}
+        src={scene.image}
+        alt={scene.imageAlt}
+        className={'foreground-image'}
+        style={scene.style}
+      />
       <div className={'text-wrapper'}>
         {scene.expo.map(({ text }, i) => (
           <div key={`${sceneIdx}-${i}`} id={`expo-${i}`}>
