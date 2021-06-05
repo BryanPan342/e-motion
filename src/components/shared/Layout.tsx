@@ -43,7 +43,7 @@ function Layout(props: LayoutProps): JSX.Element {
   const { children: scenes, exit } = props;
 
   const menuBtn = useRef<HTMLButtonElement | null>(null);
-  const audioRef = useRef<HTMLAudioELement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
