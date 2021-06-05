@@ -35,7 +35,7 @@ export default function sketch(p: p5): void {
   };
 
   p.draw = () => {
-    p.background('rgba(24, 35, 43, 1)');
+    p.background('#1D232C');
     clouds.forEach((cloud) => {
       cloud.draw();
       cloud.checkRain();
