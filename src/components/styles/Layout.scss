@@ -1,112 +1,123 @@
-@import 'variables';
+@import "variables";
 
 #layout {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 
 #p5-background {
- position: fixed;
- z-index: 0;
- top: 0;
- left: 0;
- cursor: none;
+	position: fixed;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	cursor: none;
 }
 
 .foreground-image {
-  display: block;
-  margin:auto;
-  z-index: 2;
-  width: 100%;
-  height: auto;
-  opacity: 0;
-  cursor: none;
+	display: block;
+	margin: auto;
+	z-index: 2;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	cursor: none;
 }
 
 .text-wrapper {
-  position: absolute;
-  z-index: 3;
-  text-align: center;
-  background-color: map-get($colors, 'black');
-  width: 100%;
-  height: $text-wrapper-height;
+	position: absolute;
+	z-index: 3;
+	text-align: center;
+	background-color: map-get($colors, "black");
+	width: 100%;
+	height: $text-wrapper-height;
 
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    width: inherit;
-    height: inherit;
-  }
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		opacity: 0;
+		top: 0;
+		width: inherit;
+		height: inherit;
+	}
+}
+#menuBtn {
+	position: fixed;
+	z-index: 9;
+	top: 37.5px;
+	right: 37.5px;
+	cursor: pointer;
+
+	img {
+		height: 50px;
+		width: auto;
+	}
 }
 
 #next {
-  visibility: hidden;
-  position: fixed;
-  bottom: 37.5px;
-  right: 37.5px;
-  z-index: 10;
+	visibility: hidden;
+	position: fixed;
+	bottom: 37.5px;
+	right: 37.5px;
+	z-index: 10;
 
-  cursor: pointer;
+	cursor: pointer;
 }
 
 #svg-cta {
-  overflow: visible;
+	overflow: visible;
 
-  // Fixes Safari Bug for parent button clipping content
-  // https://stackoverflow.com/questions/41100273/overflowing-button-text-is-being-clipped-in-safari
-  position: relative;
+	// Fixes Safari Bug for parent button clipping content
+	// https://stackoverflow.com/questions/41100273/overflowing-button-text-is-being-clipped-in-safari
+	position: relative;
 }
 
 .svg-circle-inner {
-  fill: #fafafa;
-  transform: scale(0.75);
-  transform-origin: center center;
+	fill: #fafafa;
+	transform: scale(0.75);
+	transform-origin: center center;
 }
 
 .svg-circle-bg {
-  fill: #f8f8f8;
-  transform: scale(0.5);
-  transform-origin: center center;
-  animation: pulse 3s linear infinite;
+	fill: #f8f8f8;
+	transform: scale(0.5);
+	transform-origin: center center;
+	animation: pulse 3s linear infinite;
 
-  &:nth-child(2) {
-    animation-delay: 2s;
-  }
-
+	&:nth-child(2) {
+		animation-delay: 2s;
+	}
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.1;
-  }
-  70% {
-    opacity: 0.09;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
+	0% {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	70% {
+		opacity: 0.09;
+	}
+	100% {
+		transform: scale(4);
+		opacity: 0;
+	}
 }
 
 @media screen and (max-height: 500px) {
-  .text-wrapper {
-    height: $text-wrapper-height-mobile;
-  }
+	.text-wrapper {
+		height: $text-wrapper-height-mobile;
+	}
 
-  #next {
-    bottom: 12.5px;
-    right: 12.5px;
-  }  
+	#next {
+		bottom: 12.5px;
+		right: 12.5px;
+	}
 }

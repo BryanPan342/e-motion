@@ -1,0 +1,54 @@
+@font-face { font-family: ProximaNova; src: 'ProximaNova-Regular.otf'; } 
+.modal {
+	// display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 15; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	font-family: ProximaNova;
+}
+
+/* Modal Content/Box */
+.modal-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin:auto;
+	margin-top: 5%;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-content p {
+	width: 30%;
+	font-size: 33px;
+	margin: 10px;
+	padding: 0px;
+	text-align: left;
+	font-family: ProximaNova;
+}
+#returnBack {
+	// border: 1px solid white;
+	min-width: 50px;
+	max-width: 100px;
+	color: white;
+	position: fixed;
+	top: 37.5px;
+	left: 37.5px;
+	z-index: 10;
+}
+#topbar {
+	margin-top: 2.5%;
+	text-align: center;
+	font-size: 30px;
+	opacity: 15%;
+}
+#title {
+	font-family: "Baskerville";
+	font-size: 72px;
+	font-weight: bold;
+	margin-top: auto;
+	margin-bottom: 3%;
+}

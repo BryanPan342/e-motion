@@ -1,7 +1,18 @@
 import p5 from 'p5';
 import React, { useEffect, useRef, useState } from 'react';
-import { animateLeft, animateOutRight, animateOutUp, animateUp, hideButton, showButton} from '../../utils';
+import backArrow from '../../assets/back-arrow.png';
+import coffeeCupImg from '../../assets/coffeecup.png';
+import cupImg from '../../assets/cup.png';
+import {
+  animateLeft,
+  animateOutRight,
+  animateOutUp,
+  animateUp,
+  hideButton,
+  showButton,
+} from '../../utils';
 
+import '../styles/ChapterList.scss';
 import '../styles/Layout.scss';
 import P5Scene from './P5Scene';
 
@@ -28,14 +39,16 @@ const size = 25;
 const center = size / 2;
 
 function Layout(props: LayoutProps): JSX.Element {
-  const {children: scenes, exit} = props;
+  const { children: scenes, exit } = props;
 
+  const menuBtn = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
   const [sceneIdx, setSceneIdx] = useState(0);
   const [scene, setScene] = useState<SceneProps>(scenes[0]);
   const [expoIdx, setExpoIdx] = useState(0);
+  const [isMenu, setIsMenu] = useState(false);
 
   useEffect(() => {
     hideButton(nextRef);
@@ -71,8 +84,7 @@ function Layout(props: LayoutProps): JSX.Element {
           timeout.current = null;
         }, scene.expo[expoIdx].duration ?? 2000);
       }, 6000);
-    }
-    else{
+    } else {
       animateUp(`.text-wrapper #expo-${expoIdx}`);
       timeout.current && clearTimeout(timeout.current);
       timeout.current = setTimeout(() => {
@@ -82,37 +94,108 @@ function Layout(props: LayoutProps): JSX.Element {
         timeout.current = null;
       }, scene.expo[expoIdx].duration ?? 2000);
     }
-
   }, [expoIdx]);
 
   const next = () => {
     setSceneIdx(sceneIdx + 1);
   };
 
+  const ChapterList = () => {
+    return (
+      <div className="modal">
+        <img src={backArrow} id="returnBack" onClick={() => setIsMenu(false)} />
+        <div id="topbar">
+          <p>main menu</p>
+        </div>
+
+        <div className="modal-content">
+          <img src={coffeeCupImg} />
+
+          <p id="title">chapter list</p>
+          <p
+            onClick={() => {
+              setSceneIdx(0);
+              setIsMenu(false);
+            }}
+          >
+						ch. 1 intro
+          </p>
+          <p
+            onClick={() => {
+              setSceneIdx(1);
+              setIsMenu(false);
+            }}
+          >
+						ch. 2 first hearing aids
+          </p>
+          <p
+            onClick={() => {
+              setSceneIdx(2);
+              setIsMenu(false);
+            }}
+          >
+						ch. 3 sadness
+          </p>
+          <p
+            onClick={() => {
+              setSceneIdx(3);
+              setIsMenu(false);
+            }}
+          >
+						ch. 4 support from family
+          </p>
+          <p
+            onClick={() => {
+              setSceneIdx(4);
+              setIsMenu(false);
+            }}
+          >
+						ch. 5 end
+          </p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div id={'layout'}>
-      <P5Scene sketch={scene.sketch}/>
-      <img src={scene.image} alt={scene.imageAlt} className={'foreground-image'} style={scene.style}/>
+      <button onClick={() => setIsMenu(true)} ref={menuBtn} id={'menuBtn'}>
+        <img src={cupImg} />
+      </button>
+      {isMenu && <ChapterList />}
+      <P5Scene sketch={scene.sketch} />
+      <img
+        src={scene.image}
+        alt={scene.imageAlt}
+        className={'foreground-image'}
+        style={scene.style}
+      />
       <div className={'text-wrapper'}>
-        {scene.expo.map(({text}, i) =>
-          <div key={`${sceneIdx}-${i}`}id={`expo-${i}`}>{text}</div>,
-        )}
+        {scene.expo.map(({ text }, i) => (
+          <div key={`${sceneIdx}-${i}`} id={`expo-${i}`}>
+            {text}
+          </div>
+        ))}
       </div>
       <button onClick={() => next()} ref={nextRef} id={'next'}>
         <svg id={'svg-cta'} width={size} height={size}>
-          {Array(num_circles).fill(0).map((_, i) =>
-            <circle
-              className={'svg-circle-bg'}
-              cx={center}
-              cy={center}
-              r={center}
-              key={i}/>,
-          )}
+          {Array(num_circles)
+            .fill(0)
+            .map((_, i) => (
+              <circle
+                className={'svg-circle-bg'}
+                cx={center}
+                cy={center}
+                r={center}
+                key={i}
+              />
+            ))}
           <circle
             className={'svg-circle-inner'}
             cx={center}
             cy={center}
-            r={center}/>
+            r={center}
+          />
         </svg>
       </button>
     </div>
