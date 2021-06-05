@@ -186,12 +186,6 @@ function Layout(props: LayoutProps): JSX.Element {
       {isMenu && <ChapterList />}
       <P5Scene sketch={scene.sketch} />
       <img
-        src={scene.image}
-        alt={scene.imageAlt}
-        className={'foreground-image'}
-        style={scene.style}
-      />
-      <img
         draggable={false}
         src={scene.image}
         alt={scene.imageAlt}
