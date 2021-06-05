@@ -1,4 +1,4 @@
-@font-face { font-family: ProximaNova; src: '../../assets/assets-3d/ProximaNova-Regular.otf'; } 
+// @font-face { font-family: 'ProximaNova-Regular'; src: '../../assets/assets-3d/ProximaNova-Regular.otf'; } 
 .modal {
 	// display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
@@ -8,10 +8,8 @@
 	width: 100%; /* Full width */
 	height: 100%; /* Full height */
 	background-color: rgb(0, 0, 0); /* Fallback color */
-	font-family: ProximaNova;
+	// font-family: 'ProximaNova-Regular';
 }
-
-/* Modal Content/Box */
 .modal-content {
 	display: flex;
 	flex-direction: column;
@@ -27,7 +25,7 @@
 	margin: 10px;
 	padding: 0px;
 	text-align: left;
-	font-family: ProximaNova;
+	// font-family: 'ProximaNova-Regular';
 }
 #returnBack {
 	// border: 1px solid white;
@@ -46,7 +44,7 @@
 	opacity: 15%;
 }
 #title {
-	font-family: "Baskerville";
+	font-family: "Baskerville", sans-serif;
 	font-size: 72px;
 	font-weight: bold;
 	margin-top: auto;
