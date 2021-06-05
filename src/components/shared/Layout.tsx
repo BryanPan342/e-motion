@@ -23,6 +23,7 @@ interface Exposition {
 
 export interface SceneProps {
   sketch: (p: p5) => void;
+  audio: string;
   expo: Exposition[];
   image: string;
   imageAlt?: string;
@@ -42,6 +43,8 @@ function Layout(props: LayoutProps): JSX.Element {
   const { children: scenes, exit } = props;
 
   const menuBtn = useRef<HTMLButtonElement | null>(null);
+  const audioRef = useRef<HTMLAudioELement | null>(null);
+
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -54,8 +57,8 @@ function Layout(props: LayoutProps): JSX.Element {
     hideButton(nextRef);
 
     if (sceneIdx >= scenes.length) exit();
-
     if (sceneIdx > 0) animateOutRight('.foreground-image');
+    if (audioRef && sceneIdx > 0) audioRef.current.pause();
 
     setTimeout(() => {
       setScene(scenes[sceneIdx]);
@@ -64,6 +67,9 @@ function Layout(props: LayoutProps): JSX.Element {
   }, [sceneIdx]);
 
   useEffect(() => {
+    audioRef.current = new Audio(scene.audio);
+    audioRef.current.volume = .15;
+    audioRef.current.play();
     setTimeout(() => {
       animateLeft('.foreground-image');
     }, 5000);
@@ -170,6 +176,7 @@ function Layout(props: LayoutProps): JSX.Element {
         className={'foreground-image'}
         style={scene.style}
       />
+      <img draggable={false} src={scene.image} alt={scene.imageAlt} className={'foreground-image'} style={scene.style}/>
       <div className={'text-wrapper'}>
         {scene.expo.map(({ text }, i) => (
           <div key={`${sceneIdx}-${i}`} id={`expo-${i}`}>

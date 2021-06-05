@@ -21,7 +21,7 @@ module.exports = merge(common, {
         ],
       },
       {
-        test: /\.(png|svg|jpe?g|gif|pdf)$/i,
+        test: /\.(png|svg|jpe?g|gif|pdf|mp3)$/i,
         use: {
           loader: 'url-loader',
           options: {
