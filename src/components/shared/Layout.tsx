@@ -15,6 +15,7 @@ import {
 import '../styles/ChapterList.scss';
 import '../styles/Layout.scss';
 import P5Scene from './P5Scene';
+import Credit from '../pages/Story1';
 
 interface Exposition {
   text: string;
@@ -23,9 +24,9 @@ interface Exposition {
 
 export interface SceneProps {
   sketch: (p: p5) => void;
-  audio: string;
+  audio?: string;
   expo: Exposition[];
-  image: string;
+  image?: string;
   imageAlt?: string;
   style?: React.CSSProperties;
 }
@@ -179,49 +180,49 @@ function Layout(props: LayoutProps): JSX.Element {
   };
 
   return (
-    <div id={'layout'}>
-      <button onClick={() => setIsMenu(true)} ref={menuBtn} id={'menuBtn'}>
-        <img src={cupImg} />
-      </button>
-      {isMenu && <ChapterList />}
-      <P5Scene sketch={scene.sketch} />
-      <img
-        draggable={false}
-        src={scene.image}
-        alt={scene.imageAlt}
-        className={'foreground-image'}
-        style={scene.style}
-      />
-      <div className={'text-wrapper'}>
-        {scene.expo.map(({ text }, i) => (
-          <div key={`${sceneIdx}-${i}`} id={`expo-${i}`}>
-            {text}
-          </div>
-        ))}
-      </div>
-      <button onClick={() => next()} ref={nextRef} id={'next'}>
-        <svg id={'svg-cta'} width={size} height={size}>
-          {Array(num_circles)
-            .fill(0)
-            .map((_, i) => (
-              <circle
-                className={'svg-circle-bg'}
-                cx={center}
-                cy={center}
-                r={center}
-                key={i}
-              />
-            ))}
-          <circle
-            className={'svg-circle-inner'}
-            cx={center}
-            cy={center}
-            r={center}
-          />
-        </svg>
-      </button>
-    </div>
-  );
+		<div id={"layout"}>
+			<button onClick={() => setIsMenu(true)} ref={menuBtn} id={"menuBtn"}>
+				<img src={cupImg} />
+			</button>
+			{isMenu && <ChapterList />}
+			<P5Scene sketch={scene.sketch} />
+			<img
+				draggable={false}
+				src={scene.image}
+				alt={scene.imageAlt}
+				className={"foreground-image"}
+				style={scene.style}
+			/>
+			<div className={"text-wrapper"}>
+				{scene.expo.map(({ text }, i) => (
+					<div key={`${sceneIdx}-${i}`} id={`expo-${i}`}>
+						{text}
+					</div>
+				))}
+			</div>
+			<button onClick={() => next()} ref={nextRef} id={"next"}>
+				<svg id={"svg-cta"} width={size} height={size}>
+					{Array(num_circles)
+						.fill(0)
+						.map((_, i) => (
+							<circle
+								className={"svg-circle-bg"}
+								cx={center}
+								cy={center}
+								r={center}
+								key={i}
+							/>
+						))}
+					<circle
+						className={"svg-circle-inner"}
+						cx={center}
+						cy={center}
+						r={center}
+					/>
+				</svg>
+			</button>
+		</div>
+	);
 }
 
 export default Layout;
